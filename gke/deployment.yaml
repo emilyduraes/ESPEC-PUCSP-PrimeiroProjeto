@@ -21,7 +21,7 @@ spec:
           image: 'gcr.io/kubernetsalura/virtual-trainer/master:latest'
           imagePullPolicy: Always
           ports:
-            - containerPort: 8085
+            - containerPort: 8080
 ---
 
 apiVersion: v1
@@ -34,8 +34,8 @@ spec:
     app: 'virtual-trainer'
   ports:
   - name: http
-    port: 8085
-    targetPort: 8085
+    port: 80
+    targetPort: 8080
     
 ---
 
@@ -49,6 +49,6 @@ spec:
     app: 'virtual-trainer'
   ports:
   - name: http
-    port: 8085
-    targetPort: 8085
+    port: 80
+    targetPort: 8080
             
