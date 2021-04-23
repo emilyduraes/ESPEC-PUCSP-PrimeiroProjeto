@@ -26,20 +26,18 @@ build:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [ "" ]
   variables:
-    DOCKER_IMAGE_TAG: 'gcr.io/kubernetsalura/virtual-trainer/feature/gcp-backend'
+    DOCKER_IMAGE_TAG: 'gcr.io/kubernetsalura/virtual-trainer/$CI_COMMIT_BRANCH'
   script:
     - export GOOGLE_APPLICATION_CREDENTIALS=/kaniko/kaniko-secret.json
     - echo $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS 
-    - /kaniko/executor --context=$CI_PROJECT_DIR --dockerfile=Dockerfile --destination=$DOCKER_IMAGE_TAG:v1 --cache=true
+    - /kaniko/executor --context=$CI_PROJECT_DIR --dockerfile=Dockerfile --destination=DOCKER_IMAGE_TAG:$CI_COMMIT_SHORT_SHA --destination=$DOCKER_IMAGE_TAG:latest --cache=true
   only:
-    - development
-    - feature/gcp-backend
-    - main
+    - master
 
-develop:
+production:
   stage: publish
   image: google/cloud-sdk:257.0.0
-  environment: develop
+  environment: production
   script:
     - echo $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > key.json
     - gcloud auth activate-service-account --key-file=key.json 
@@ -48,21 +46,6 @@ develop:
     - gcloud container clusters get-credentials cluster-1
     - kubectl apply -f gke/deployment.yaml
     - kubectl rollout restart deployment.apps/virtual-trainer
-  only:
-    - development
-    - feature/gcp-backend
-  when: manual
-
-production:
-  stage: publish
-  image: google/cloud-sdk:257.0.0
-  environment: develop
-  script:
-    - gcloud config set project kubernetsalura
-    - gcloud config set compute/zone us-central1-b
-    - gcloud container clusters get-credentials project-puc-cluster-1
-    - kubectl apply -f gke/deployment.yaml
-    - kubectl rollout restart deployment.apps/virtual-trainer -n backend
   only:
     - master
   when: manual

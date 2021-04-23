@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: 'virtual-trainer'
-          image: 'gcr.io/kubernetsalura/virtual-trainer/feature/gcp-backend:v1'
+          image: 'gcr.io/kubernetsalura/virtual-trainer/master:latest'
           imagePullPolicy: Always
           ports:
             - containerPort: 8085
