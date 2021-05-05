@@ -2,6 +2,7 @@ package br.edu.pucsp.virtualtrainer.controller;
 
 import br.edu.pucsp.virtualtrainer.service.TrainerService;
 import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
+import br.edu.pucsp.virtualtrainer.transport.request.TrainerUpdateRequest;
 import br.edu.pucsp.virtualtrainer.transport.response.TrainerListResponse;
 import br.edu.pucsp.virtualtrainer.transport.response.TrainerResponse;
 import io.swagger.annotations.ApiOperation;
@@ -40,7 +41,7 @@ public class TrainerController {
 
     @ApiOperation(value = "Recover a trainer by id")
     @GetMapping(path = "/id/{trainerId}")
-    public TrainerResponse getTrainer(
+    public TrainerResponse getTrainerById(
             @PathVariable Long trainerId){
         return new TrainerResponse(trainerService.findTrainer(trainerId));
     }
@@ -52,11 +53,10 @@ public class TrainerController {
     }
 
     @ApiOperation(value = "Update a trainer's info")
-    @PutMapping(path = "/{trainerId}")
+    @PutMapping(path = "")
     public void updateTrainer(
-            @RequestBody @Valid TrainerRequest request,
-            @PathVariable Long trainerId){
-        trainerService.updateTrainer(request, trainerId);
+            @RequestBody @Valid TrainerUpdateRequest request){
+        trainerService.updateTrainer(request);
     }
 
     @ApiOperation(value = "Delete a trainer")
