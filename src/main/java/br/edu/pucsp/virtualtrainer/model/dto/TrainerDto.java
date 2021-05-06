@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 public class TrainerDto {
 
-    private Long id;
-
     private String nickname;
 
     private String fullName;
@@ -14,7 +12,7 @@ public class TrainerDto {
 
     private Long cnpj;
 
-    private LocalDate birthdate;
+    private LocalDate birthDate;
 
     private String email;
 
@@ -23,14 +21,6 @@ public class TrainerDto {
     private String zoomAccount;
 
     private boolean active;
-
-    public long getId(){
-        return id;
-    }
-
-    public void setId(Long id){
-        this.id = id;
-    }
 
     public String getNickname() {
         return nickname;
@@ -57,12 +47,12 @@ public class TrainerDto {
         this.cnpj = cnpj;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Long getCpf() {

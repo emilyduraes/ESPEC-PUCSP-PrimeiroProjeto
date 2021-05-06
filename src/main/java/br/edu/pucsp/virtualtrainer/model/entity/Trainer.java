@@ -20,11 +20,9 @@ public class Trainer {
     @Column(nullable = false)
     private LocalDate birthdate;
 
-    //nullable
     @Column(unique = true)
     private Long cpf;
 
-  //nullable
     @Column(unique = true)
     private Long cnpj;
 
