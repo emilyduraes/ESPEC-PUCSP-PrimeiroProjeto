@@ -71,7 +71,7 @@ public class Student {
         return birthDate;
     }
 
-    public void setBirthdate(LocalDate birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
