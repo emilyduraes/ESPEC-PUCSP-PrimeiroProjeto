@@ -3,14 +3,13 @@ package br.edu.pucsp.virtualtrainer.model.dto;
 import java.time.LocalDate;
 
 public class StudentDto {
-
     private Long id;
 
     private String nickname;
 
     private String fullName;
 
-    private LocalDate birthdate;
+    private LocalDate birthDate;
 
     private Long cpf;
 
@@ -20,13 +19,11 @@ public class StudentDto {
 
     private String zoomAccount;
 
-    private boolean active;
-
-    public Long getId() {
+    public Long getId(){
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id){
         this.id = id;
     }
 
@@ -46,12 +43,12 @@ public class StudentDto {
         this.fullName = fullName;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Long getCpf() {
@@ -82,15 +79,7 @@ public class StudentDto {
         return zoomAccount;
     }
 
-	public void setZoomAccount(String zoomAccount) {
-		this.zoomAccount = zoomAccount;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+    public void setZoomAccount(String zoomAccount) {
+        this.zoomAccount = zoomAccount;
+    }
 }

@@ -12,7 +12,7 @@ public class TrainerDto {
 
     private Long cnpj;
 
-    private LocalDate birthdate;
+    private LocalDate birthDate;
 
     private String email;
 
@@ -47,15 +47,15 @@ public class TrainerDto {
         this.cnpj = cnpj;
     }
 
-    public LocalDate getBirthdate() {
-		return birthdate;
-	}
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
 
-	public void setBirthdate(LocalDate birthdate) {
-		this.birthdate = birthdate;
-	}
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
 
-	public Long getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
