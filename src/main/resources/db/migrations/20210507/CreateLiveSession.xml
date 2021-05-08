@@ -23,10 +23,10 @@
         </createTable>
     </changeSet>
     <changeSet author="Emily Duraes" id="20210507-2">
-        <addForeignKeyConstraint baseColumnNames="field" baseTableName="live_session" constraintName="FK_LIVE_SESSION_FIELD" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Field"/>
+        <addForeignKeyConstraint baseColumnNames="field" baseTableName="live_session" constraintName="FK_LIVE_SESSION_FIELD" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="field"/>
     </changeSet>
     <changeSet author="Emily Duraes" id="20210507-3">
-        <addForeignKeyConstraint baseColumnNames="trainer" baseTableName="live_session" constraintName="FK_LIVE_SESSION_TRAINER" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Trainer"/>
+        <addForeignKeyConstraint baseColumnNames="trainer" baseTableName="live_session" constraintName="FK_LIVE_SESSION_TRAINER" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="trainer"/>
     </changeSet>
     <changeSet author="Emily Duraes" id="20210507-4">
         <createTable tableName="live_sessions_enrolled_students">

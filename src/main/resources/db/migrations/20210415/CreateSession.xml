@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet author="Glauco Castilho" id="20210415-1">
-        <createTable tableName="Session">
+        <createTable tableName="session">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="SessionPK"/>
             </column>
@@ -21,9 +21,9 @@
         </createTable>
     </changeSet>
     <changeSet author="Glauco Castilho" id="20210415-2">
-        <addForeignKeyConstraint baseColumnNames="field" baseTableName="Session" constraintName="FK_SESSION_FIELD" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Field"/>
+        <addForeignKeyConstraint baseColumnNames="field" baseTableName="Session" constraintName="FK_SESSION_FIELD" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="field"/>
     </changeSet>
     <changeSet author="Glauco Castilho" id="20210415-3">
-        <addForeignKeyConstraint baseColumnNames="trainer" baseTableName="Session" constraintName="FK_SESSION_TRAINER" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="Trainer"/>
+        <addForeignKeyConstraint baseColumnNames="trainer" baseTableName="Session" constraintName="FK_SESSION_TRAINER" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="trainer"/>
     </changeSet>
 </databaseChangeLog>
