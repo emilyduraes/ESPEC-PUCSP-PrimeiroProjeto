@@ -21,9 +21,9 @@
         </createTable>
     </changeSet>
     <changeSet author="Glauco Castilho" id="20210415-2">
-        <addForeignKeyConstraint baseColumnNames="field" baseTableName="Session" constraintName="FK_SESSION_FIELD" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="field"/>
+        <addForeignKeyConstraint baseColumnNames="field" baseTableName="session" constraintName="FK_SESSION_FIELD" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="field"/>
     </changeSet>
     <changeSet author="Glauco Castilho" id="20210415-3">
-        <addForeignKeyConstraint baseColumnNames="trainer" baseTableName="Session" constraintName="FK_SESSION_TRAINER" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="trainer"/>
+        <addForeignKeyConstraint baseColumnNames="trainer" baseTableName="session" constraintName="FK_SESSION_TRAINER" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="trainer"/>
     </changeSet>
 </databaseChangeLog>
