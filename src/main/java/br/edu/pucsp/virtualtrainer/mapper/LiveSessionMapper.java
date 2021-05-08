@@ -9,5 +9,5 @@ import br.edu.pucsp.virtualtrainer.transport.request.LiveSessionRequest;
 @Mapper()
 public interface LiveSessionMapper {
     LiveSessionDto entityToDto(LiveSession session);
-    LiveSession requestToEntity(LiveSessionRequest request);
+    // LiveSession requestToEntity(LiveSessionRequest request);
 }
