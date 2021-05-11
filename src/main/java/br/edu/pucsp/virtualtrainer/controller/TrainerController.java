@@ -52,11 +52,10 @@ public class TrainerController {
     }
 
     @ApiOperation(value = "Update a trainer's info")
-    @PutMapping(path = "/{trainerId}")
+    @PutMapping
     public void updateTrainer(
-            @RequestBody @Valid TrainerRequest request,
-            @PathVariable Long trainerId){
-        trainerService.updateTrainer(request, trainerId);
+            @RequestBody @Valid TrainerRequest request){
+        trainerService.updateTrainer(request);
     }
 
     @ApiOperation(value = "Delete a trainer")

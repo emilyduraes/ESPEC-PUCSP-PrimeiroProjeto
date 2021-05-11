@@ -53,9 +53,9 @@ public class StudentController {
     }
 
     @ApiOperation(value = "Update a Student in the database")
-    @PutMapping(path = "/{studentId}")
-    public void updateStudent(@RequestBody @Valid StudentRequest request, @PathVariable Long id) {
-        studentService.updateStudent(request, id);
+    @PutMapping
+    public void updateStudent(@RequestBody @Valid StudentRequest request) {
+        studentService.updateStudent(request);
     }
 
     @ApiOperation(value = "Delete (deactivate) a Student from the database")
