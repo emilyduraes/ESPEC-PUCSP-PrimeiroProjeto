@@ -76,9 +76,9 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
-    public void updateTrainer(TrainerRequest request, Long trainerId) {
-        Trainer trainer = repository.findById(trainerId)
-                .orElseThrow(() -> new DataNotFoundException(trainerId));
+    public void updateTrainer(TrainerRequest request) {
+        Trainer trainer = repository.findById(request.getId())
+                .orElseThrow(() -> new DataNotFoundException(request.getId()));
         trainer.setNickname(request.getNickname());
         trainer.setFullName(request.getFullName());
         trainer.setBirthdate(request.getBirthdate());

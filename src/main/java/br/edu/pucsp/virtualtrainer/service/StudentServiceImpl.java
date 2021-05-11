@@ -51,11 +51,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void updateStudent(StudentRequest request, Long id) {
+    public void updateStudent(StudentRequest request) {
         Student student = repository.findById(request.getId()).orElseThrow(() -> new DataNotFoundException(request.getId()));
         student.setEmail(request.getEmail());
         student.setZoomAccount(request.getZoomAccount());
         student.setCellphone(request.getCellphone());
+        student.setBirthDate(request.getBirthDate());
+        student.setNickname(request.getNickname());
+        student.setFullName(request.getFullName());
         repository.save(student);
     }
 }
