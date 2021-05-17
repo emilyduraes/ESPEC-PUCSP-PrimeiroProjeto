@@ -10,17 +10,17 @@
 	    <addColumn schemaName= "virtual_trainer" tableName="live_class">
 		    <column afterColumn="id"
                 name="start_time" 
-			    type="datetime" >
+			    type="SmallDateTime" >
 			    <constraints nullable="false"/>
             </column>  
 		    <column afterColumn="start_time" 
 			    name="end_time"  
-			    type="datetime" >  
+			    type="SmallDateTime" >  
 			    <constraints nullable="false"/>
             </column>   
             <column afterColumn="title" 
 			    name="type"  
-			    type="datetime" >  
+			    type="varchar(255)" >  
 			    <constraints nullable="false"/>
             </column>   
 	    </addColumn> 
