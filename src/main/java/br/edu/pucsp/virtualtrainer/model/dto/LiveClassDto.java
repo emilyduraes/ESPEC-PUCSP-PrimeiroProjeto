@@ -1,23 +1,25 @@
 package br.edu.pucsp.virtualtrainer.model.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import br.edu.pucsp.virtualtrainer.model.entity.Field;
 import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
 
-public class LiveSessionDto {
+public class LiveClassDto {
 
     private Long id;
     
-    private LocalDate date;
+    private LocalDateTime startTime;
     
-    private Integer length;
-    
+    private LocalDateTime endTime;
+
     private Trainer trainer;
     
     private Field field;
     
     private String title;
+
+    private String type;
     
     public Long getId() {
         return id;
@@ -27,22 +29,22 @@ public class LiveSessionDto {
         this.id = id;
     }
     
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
-    
-    public void setDate(LocalDate date) {
-        this.date = date;
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
     }
-    
-    public Integer getLength() {
-        return length;
+
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
-    
-    public void setLength(Integer length) {
-        this.length = length;
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
-    
+
     public Trainer getTrainer() {
         return trainer;
     }
@@ -67,4 +69,11 @@ public class LiveSessionDto {
         this.title = title;
     }
     
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

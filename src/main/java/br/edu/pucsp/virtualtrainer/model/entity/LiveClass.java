@@ -1,6 +1,6 @@
 package br.edu.pucsp.virtualtrainer.model.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,17 +11,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class LiveSession {
+public class LiveClass {
 
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private LocalDate date;
-
-    @Column(nullable = false)
-    private Integer length;
+    @Column(nullable = false, name = "start_time")
+    private LocalDateTime startTime;
+    
+    @Column(nullable = false, name = "end_time")
+    private LocalDateTime endTime;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "trainer", referencedColumnName = "id")
@@ -34,6 +34,8 @@ public class LiveSession {
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
+    private String type;
 
     public Long getId() {
         return id;
@@ -43,20 +45,20 @@ public class LiveSession {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
     }
 
-    public Integer getLength() {
-        return length;
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
-    public void setLength(Integer length) {
-        this.length = length;
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     public Trainer getTrainer() {
@@ -81,5 +83,13 @@ public class LiveSession {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
