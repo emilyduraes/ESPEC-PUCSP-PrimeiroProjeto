@@ -75,9 +75,10 @@ public class LiveClassServiceImpl implements LiveClassService {
     }
 
     @Override
-    public void updateLiveClass(LiveClassRequest request, Long id) {
-        // TODO Auto-generated method stub
-
+    public void updateLiveClass(LiveClassRequest request) {
+        LiveClass liveClass = repository.findById(request.getId()).orElseThrow(() -> new DataNotFoundException(request.getId()));
+        liveClass.setTitle(request.getTitle());
+        repository.save(liveClass);
     }
 
     @Override

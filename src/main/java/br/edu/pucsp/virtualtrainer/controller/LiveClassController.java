@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,6 +44,12 @@ public class LiveClassController {
     // public LiveClassResponse getLiveClass (@PathVariable Long liveClassId) {
     //     return new LiveClassResponse(liveClassService.findLiveClass(liveClassId));
     // } 
+
+    @ApiOperation(value = "Updates a live class title in the database")
+    @PatchMapping
+    public void updateLiveClass(@RequestBody @Valid LiveClassRequest request) {
+        liveClassService.updateLiveClass(request);
+    }
 
     @ApiOperation(value = "Delete a live class from the database")
     @DeleteMapping(path = "/{liveClassId}")

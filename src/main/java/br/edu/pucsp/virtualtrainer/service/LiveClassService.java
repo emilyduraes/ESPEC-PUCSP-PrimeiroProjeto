@@ -11,7 +11,7 @@ public interface LiveClassService {
     LiveClassDto findLiveClass(Long id);
     List<LiveClassDto> findLiveClasses(String name);
     void deleteLiveClass(Long id);
-    void updateLiveClass(LiveClassRequest request, Long id);
+    void updateLiveClass(LiveClassRequest request);
     void addStudentToLiveClass (Long id, Long studentId);
 
 }
