@@ -39,7 +39,6 @@ public class LiveClassServiceImpl implements LiveClassService {
         Trainer trainer = trainerRepository.findById(request.getTrainer()).orElseThrow(() -> new DataNotFoundException(request.getTrainer()));
         Field field = fieldRepository.findById(request.getField()).orElseThrow(() -> new DataNotFoundException(request.getField()));
 
-        // LiveClass liveClass = MAPPER.requestToEntity(request);
         LiveClass liveClass = new LiveClass();
 
         liveClass.setField(field);
@@ -54,9 +53,11 @@ public class LiveClassServiceImpl implements LiveClassService {
 
     @Override
     public LiveClassDto findLiveClass(Long id) {
-        // LiveClass liveClass = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
-        // return MAPPER.entityToDto(liveClass);
-        return null;
+        LiveClass liveClass = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
+        Trainer trainer = liveClass.getTrainer();
+        Field field = liveClass.getField();
+
+        return MAPPER.entityToDto(liveClass);
     }
 
     @Override

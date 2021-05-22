@@ -2,6 +2,7 @@ package br.edu.pucsp.virtualtrainer.model.entity;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "live_class")
 public class LiveClass {
 
     @Id()
@@ -23,11 +26,11 @@ public class LiveClass {
     @Column(nullable = false, name = "end_time")
     private LocalDateTime endTime;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "trainer", referencedColumnName = "id")
     private Trainer trainer;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "field", referencedColumnName = "id")
     private Field field;
 

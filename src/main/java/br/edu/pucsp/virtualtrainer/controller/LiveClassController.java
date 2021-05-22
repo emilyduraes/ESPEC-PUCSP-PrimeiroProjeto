@@ -39,11 +39,11 @@ public class LiveClassController {
         liveClassService.createLiveClass(request);
     }
 
-    // @ApiOperation(value = "Find a Live Class from the database")
-    // @GetMapping(path = "/id/{liveClassId}")
-    // public LiveClassResponse getLiveClass (@PathVariable Long liveClassId) {
-    //     return new LiveClassResponse(liveClassService.findLiveClass(liveClassId));
-    // } 
+    @ApiOperation(value = "Find a Live Class from the database")
+    @GetMapping(path = "/id/{liveClassId}")
+    public LiveClassResponse getLiveClass (@PathVariable Long liveClassId) {
+        return new LiveClassResponse(liveClassService.findLiveClass(liveClassId));
+    } 
 
     @ApiOperation(value = "Updates a live class title in the database")
     @PatchMapping
