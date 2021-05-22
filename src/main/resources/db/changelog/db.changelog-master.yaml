@@ -9,3 +9,5 @@ databaseChangeLog:
       file: db/migrations/20210423/changeColumnName.xml
   - include:
       file: db/migrations/20210507/CreateLiveSession.xml
+  - include:
+      file: db/migrations/20210512/RefactorLiveClass.xml

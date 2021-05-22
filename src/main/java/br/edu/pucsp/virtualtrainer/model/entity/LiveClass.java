@@ -1,7 +1,8 @@
 package br.edu.pucsp.virtualtrainer.model.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,31 +10,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class LiveSession {
+@Table(name = "live_class")
+public class LiveClass {
 
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private LocalDate date;
+    @Column(nullable = false, name = "start_time")
+    private LocalDateTime startTime;
+    
+    @Column(nullable = false, name = "end_time")
+    private LocalDateTime endTime;
 
-    @Column(nullable = false)
-    private Integer length;
-
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "trainer", referencedColumnName = "id")
     private Trainer trainer;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "field", referencedColumnName = "id")
     private Field field;
 
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
+    private String type;
 
     public Long getId() {
         return id;
@@ -43,20 +48,20 @@ public class LiveSession {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
     }
 
-    public Integer getLength() {
-        return length;
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
-    public void setLength(Integer length) {
-        this.length = length;
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     public Trainer getTrainer() {
@@ -81,5 +86,13 @@ public class LiveSession {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
