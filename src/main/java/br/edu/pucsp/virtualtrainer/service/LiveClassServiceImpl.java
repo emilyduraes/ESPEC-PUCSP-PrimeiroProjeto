@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.LiveClassMapper;
+import br.edu.pucsp.virtualtrainer.mapper.TrainerMapper;
 import br.edu.pucsp.virtualtrainer.model.dto.LiveClassDto;
 import br.edu.pucsp.virtualtrainer.model.entity.Field;
 import br.edu.pucsp.virtualtrainer.model.entity.LiveClass;
@@ -54,9 +55,6 @@ public class LiveClassServiceImpl implements LiveClassService {
     @Override
     public LiveClassDto findLiveClass(Long id) {
         LiveClass liveClass = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
-        Trainer trainer = liveClass.getTrainer();
-        Field field = liveClass.getField();
-
         return MAPPER.entityToDto(liveClass);
     }
 

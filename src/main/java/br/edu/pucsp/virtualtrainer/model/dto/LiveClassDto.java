@@ -2,9 +2,6 @@ package br.edu.pucsp.virtualtrainer.model.dto;
 
 import java.time.LocalDateTime;
 
-import br.edu.pucsp.virtualtrainer.model.entity.Field;
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
-
 public class LiveClassDto {
 
     private Long id;
@@ -13,9 +10,9 @@ public class LiveClassDto {
     
     private LocalDateTime endTime;
 
-    private Trainer trainer;
+    private TrainerDto trainer;
     
-    private Field field;
+    private FieldDto field;
     
     private String title;
 
@@ -45,19 +42,19 @@ public class LiveClassDto {
         this.endTime = endTime;
     }
 
-    public Trainer getTrainer() {
+    public TrainerDto getTrainer() {
         return trainer;
     }
     
-    public void setTrainer(Trainer trainer) {
+    public void setTrainer(TrainerDto trainer) {
         this.trainer = trainer;
     }
     
-    public Field getField() {
+    public FieldDto getField() {
         return field;
     }
     
-    public void setField(Field field) {
+    public void setField(FieldDto field) {
         this.field = field;
     }
     
