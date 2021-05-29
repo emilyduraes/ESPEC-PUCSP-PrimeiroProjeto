@@ -3,11 +3,36 @@ variables:
   MAVEN_CLI_OPTS: "--batch-mode"
   APP_NAME: virtual-trainer
   PROJECT_NAME: clear-safeguard-315223
+  SONAR_URL: "http://35.194.7.240:9000"
+  SONAR_LOGIN: e757d66e66e227a78ea5e2f385caeaec4d7e8384
 
 stages:
+  - code_analysis
   - package
   - build
   - publish
+  
+before_script:
+    - REVISION_STABLE=${CI_COMMIT_TAG}
+    - REVISION_UNSTABLE=${CI_COMMIT_REF_SLUG}+sha.${CI_COMMIT_SHA:0:8}
+
+sonarqube:issues:
+  stage: code_analysis
+  image: maven:latest
+  script:
+    - mvn --batch-mode verify sonar:sonar -DskipTests=true -Drevision=$REVISION_UNSTABLE -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.gitlab.project_id=$CI_PROJECT_PATH -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.failure_notification_mode=exit-code -Dsonar.analysis.mode=issues
+  only:
+    - pipeline
+    
+sonarqube:publish:
+  stage: code_analysis
+  image: maven:latest
+  script:
+    - mvn --batch-mode verify sonar:sonar -Drevision=$REVISION_STABLE -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.gitlab.project_id=$CI_PROJECT_PATH -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.failure_notification_mode=exit-code -Dsonar.analysis.mode=publish
+    
+  only:
+    - pipeline  
+  
 
 package:
   stage: package
@@ -34,6 +59,7 @@ build:
     - /kaniko/executor --context=$CI_PROJECT_DIR --dockerfile=Dockerfile --destination=$DOCKER_IMAGE_TAG:latest --cache=true
   only:
     - master
+    - pipeline
 
 production:
   stage: publish
