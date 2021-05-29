@@ -41,7 +41,7 @@ production:
   script:
     - echo $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > key.json
     - gcloud auth activate-service-account --key-file=key.json 
-    - gcloud config set project kubernetsalura
+    - gcloud config set project clear-safeguard-315223
     - gcloud config set compute/zone us-central1-a
     - gcloud container clusters get-credentials cluster-1
     - kubectl apply -f gke/deployment.yaml
