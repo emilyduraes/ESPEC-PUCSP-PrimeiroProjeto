@@ -2,6 +2,7 @@ variables:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
   MAVEN_CLI_OPTS: "--batch-mode"
   APP_NAME: virtual-trainer
+  PROJECT_NAME: clear-safeguard-315223
 
 stages:
   - package
@@ -26,7 +27,7 @@ build:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [ "" ]
   variables:
-    DOCKER_IMAGE_TAG: 'gcr.io/kubernetsalura/virtual-trainer/$CI_COMMIT_BRANCH'
+    DOCKER_IMAGE_TAG: 'gcr.io/$PROJECT_NAME/virtual-trainer/$CI_COMMIT_BRANCH'
   script:
     - export GOOGLE_APPLICATION_CREDENTIALS=/kaniko/kaniko-secret.json
     - echo $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS 
@@ -41,7 +42,7 @@ production:
   script:
     - echo $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > key.json
     - gcloud auth activate-service-account --key-file=key.json 
-    - gcloud config set project clear-safeguard-315223
+    - gcloud config set project $PROJECT_NAME
     - gcloud config set compute/zone us-central1-a
     - gcloud container clusters get-credentials cluster-1
     - kubectl apply -f gke/deployment.yaml
