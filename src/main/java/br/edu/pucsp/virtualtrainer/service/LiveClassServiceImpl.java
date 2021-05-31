@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.LiveClassMapper;
-import br.edu.pucsp.virtualtrainer.mapper.TrainerMapper;
 import br.edu.pucsp.virtualtrainer.model.dto.LiveClassDto;
 import br.edu.pucsp.virtualtrainer.model.entity.Field;
 import br.edu.pucsp.virtualtrainer.model.entity.LiveClass;
