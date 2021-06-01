@@ -1,6 +1,6 @@
 package br.edu.pucsp.virtualtrainer.transport.response;
 
-import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
+import br.edu.pucsp.virtualtrainer.domain.dto.StudentDto;
 
 public class StudentResponse {
     

@@ -1,6 +1,6 @@
 package br.edu.pucsp.virtualtrainer.trainer;
 
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
+import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
 import br.edu.pucsp.virtualtrainer.service.TrainerServiceImpl;
 import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;

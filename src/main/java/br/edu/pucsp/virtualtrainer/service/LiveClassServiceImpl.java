@@ -1,17 +1,20 @@
 package br.edu.pucsp.virtualtrainer.service;
 
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import br.edu.pucsp.virtualtrainer.domain.enums.MeetingType;
+import br.edu.pucsp.virtualtrainer.transport.request.api.ZoomMeetingRequest;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.LiveClassMapper;
-import br.edu.pucsp.virtualtrainer.mapper.TrainerMapper;
-import br.edu.pucsp.virtualtrainer.model.dto.LiveClassDto;
-import br.edu.pucsp.virtualtrainer.model.entity.Field;
-import br.edu.pucsp.virtualtrainer.model.entity.LiveClass;
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
+import br.edu.pucsp.virtualtrainer.domain.dto.LiveClassDto;
+import br.edu.pucsp.virtualtrainer.domain.entity.Field;
+import br.edu.pucsp.virtualtrainer.domain.entity.LiveClass;
+import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
 import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.LiveClassRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
@@ -28,15 +31,31 @@ public class LiveClassServiceImpl implements LiveClassService {
 
     FieldRepository fieldRepository;
 
+    ZoomService zoomService;
+
     public LiveClassServiceImpl(LiveClassRepository repository, TrainerRepository trainerRepository,
-            FieldRepository fieldRepository) {
+            FieldRepository fieldRepository, ZoomService zoomService) {
         this.repository = repository;
         this.trainerRepository = trainerRepository;
         this.fieldRepository = fieldRepository;
+        this.zoomService = zoomService;
     }
 
     @Override
     public void createLiveClass(LiveClassRequest request) {
+        var meetingRequest = new ZoomMeetingRequest.Builder()
+                .withName(request.getTitle())
+                .withDescription("Description")//TODO adicionar campo no request
+                .type(MeetingType.SCHEDULED)
+                .at(request.getStartTime())
+                .duration(30)//TODO alterar o request para passar a duração em vez do inicio e fim
+                .withDefaultSettings()
+                .build();
+
+
+
+        String response = zoomService.createMeeting(meetingRequest);
+
         Trainer trainer = trainerRepository.findById(request.getTrainer()).orElseThrow(() -> new DataNotFoundException(request.getTrainer()));
         Field field = fieldRepository.findById(request.getField()).orElseThrow(() -> new DataNotFoundException(request.getField()));
 

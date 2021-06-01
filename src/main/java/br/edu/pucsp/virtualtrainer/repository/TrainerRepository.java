@@ -1,6 +1,6 @@
 package br.edu.pucsp.virtualtrainer.repository;
 
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
+import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,53 +1,29 @@
-package br.edu.pucsp.virtualtrainer.model.entity;
+package br.edu.pucsp.virtualtrainer.domain.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Student {
-    
-    @Id()
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class StudentDto {
     private Long id;
 
-    @Column(nullable = false, length = 30)
     private String nickname;
 
-    @Column(nullable = false, length = 60, name = "full_name")
     private String fullName;
 
-    @Column(nullable = false, name = "birth_date")
     private LocalDate birthDate;
 
-    @Column(nullable = false, unique = true)
     private Long cpf;
 
-    @Column(nullable = false, length = 60)
     private String email;
 
-    @Column(nullable = false)
     private Long cellphone;
 
-    @Column(name = "zoom_account", length = 60)
     private String zoomAccount;
 
-    @Column(nullable = false)
-    private boolean active;
-
-    public Student() {
-        this.active = true;
-    }
-
-    public Long getId() {
+    public Long getId(){
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id){
         this.id = id;
     }
 
@@ -106,14 +82,4 @@ public class Student {
     public void setZoomAccount(String zoomAccount) {
         this.zoomAccount = zoomAccount;
     }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    
 }

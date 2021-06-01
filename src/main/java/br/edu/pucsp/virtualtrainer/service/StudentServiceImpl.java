@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.StudentMapper;
-import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
-import br.edu.pucsp.virtualtrainer.model.entity.Student;
+import br.edu.pucsp.virtualtrainer.domain.dto.StudentDto;
+import br.edu.pucsp.virtualtrainer.domain.entity.Student;
 import br.edu.pucsp.virtualtrainer.repository.StudentRepository;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
 

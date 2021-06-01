@@ -2,7 +2,7 @@ package br.edu.pucsp.virtualtrainer.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.edu.pucsp.virtualtrainer.model.entity.LiveClass;
+import br.edu.pucsp.virtualtrainer.domain.entity.LiveClass;
 
 public interface LiveClassRepository extends JpaRepository<LiveClass, Long> {
 

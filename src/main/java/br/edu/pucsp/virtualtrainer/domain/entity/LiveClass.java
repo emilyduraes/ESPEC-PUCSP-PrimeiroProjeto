@@ -1,4 +1,4 @@
-package br.edu.pucsp.virtualtrainer.model.entity;
+package br.edu.pucsp.virtualtrainer.domain.entity;
 
 import java.time.LocalDateTime;
 

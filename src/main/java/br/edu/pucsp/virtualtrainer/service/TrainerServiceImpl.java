@@ -2,10 +2,10 @@ package br.edu.pucsp.virtualtrainer.service;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.TrainerMapper;
-import br.edu.pucsp.virtualtrainer.model.dto.TrainerDto;
-import br.edu.pucsp.virtualtrainer.model.entity.Field;
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
-import br.edu.pucsp.virtualtrainer.model.entity.TrainerField;
+import br.edu.pucsp.virtualtrainer.domain.dto.TrainerDto;
+import br.edu.pucsp.virtualtrainer.domain.entity.Field;
+import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
+import br.edu.pucsp.virtualtrainer.domain.entity.TrainerField;
 import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerFieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;

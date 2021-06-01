@@ -2,7 +2,7 @@ package br.edu.pucsp.virtualtrainer.transport.response;
 
 import java.util.List;
 
-import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
+import br.edu.pucsp.virtualtrainer.domain.dto.StudentDto;
 
 public class StudentListResponse {
     private List<StudentDto> students;

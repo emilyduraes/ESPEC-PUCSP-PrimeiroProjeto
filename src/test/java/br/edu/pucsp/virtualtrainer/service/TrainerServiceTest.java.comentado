@@ -1,8 +1,8 @@
 package br.edu.pucsp.virtualtrainer.service;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
-import br.edu.pucsp.virtualtrainer.model.dto.TrainerDto;
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
+import br.edu.pucsp.virtualtrainer.domain.dto.TrainerDto;
+import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
 import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
 import org.junit.Assert;

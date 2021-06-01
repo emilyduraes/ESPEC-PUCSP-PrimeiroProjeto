@@ -2,7 +2,7 @@ package br.edu.pucsp.virtualtrainer.service;
 
 import java.util.List;
 
-import br.edu.pucsp.virtualtrainer.model.dto.StudentDto;
+import br.edu.pucsp.virtualtrainer.domain.dto.StudentDto;
 import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
 
 public interface StudentService {
