@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.edu.pucsp.virtualtrainer.service.CategoryService;
 import br.edu.pucsp.virtualtrainer.transport.response.CategoryListResponse;
 import br.edu.pucsp.virtualtrainer.transport.response.CategoryResponse;
+import br.edu.pucsp.virtualtrainer.transport.response.FieldListResponse;
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -32,5 +33,11 @@ public class CategoryController {
     @GetMapping(path = "/id/{categoryId}")
     public CategoryResponse getCategory(@PathVariable Long categoryId){
         return new CategoryResponse(categoryService.findCategory(categoryId));
+    }
+
+    @ApiOperation(value = "Recover fields by category")
+    @GetMapping(path = "/id/{categoryId}/fields")
+    public FieldListResponse getFieldsByCategory(@PathVariable Long categoryId){
+        return new FieldListResponse(categoryService.findFieldsByCategory(categoryId));
     }
 }
