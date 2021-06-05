@@ -1,5 +1,12 @@
 package br.edu.pucsp.virtualtrainer.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Service;
+
+import br.edu.pucsp.virtualtrainer.exception.CertificateNotPresentException;
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.TrainerMapper;
 import br.edu.pucsp.virtualtrainer.model.dto.TrainerDto;
@@ -9,12 +16,8 @@ import br.edu.pucsp.virtualtrainer.model.entity.TrainerField;
 import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerFieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
+import br.edu.pucsp.virtualtrainer.transport.request.TrainerFieldRequest;
 import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
-import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -89,12 +92,18 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
-    public void addFields(String certificate){
-        Field field = fieldRepository.getOne(1L);
-        Trainer trainer = repository.getOne(1L);
+    public void addFields(TrainerFieldRequest trainerFieldRequest){
+        Field field = fieldRepository.findById(trainerFieldRequest.getFieldId()).orElseThrow(() -> new DataNotFoundException(trainerFieldRequest.getFieldId()));
+        Trainer trainer = repository.findById(trainerFieldRequest.getTrainerId()).orElseThrow(() -> new DataNotFoundException(trainerFieldRequest.getTrainerId()));
 
         TrainerField trainerField = new TrainerField(trainer, field);
-        trainerField.setCertificate(certificate);
+        if (field.isCertified()){
+            if(trainerFieldRequest.getCertificate() != null){
+                trainerField.setCertificate(trainerFieldRequest.getCertificate());
+            } else{
+                throw new CertificateNotPresentException();
+            }
+        }
         trainerFieldRepository.save(trainerField);
     }
 }

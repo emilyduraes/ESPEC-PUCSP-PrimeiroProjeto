@@ -1,13 +1,14 @@
 package br.edu.pucsp.virtualtrainer.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.LiveClassMapper;
-import br.edu.pucsp.virtualtrainer.mapper.TrainerMapper;
 import br.edu.pucsp.virtualtrainer.model.dto.LiveClassDto;
 import br.edu.pucsp.virtualtrainer.model.entity.Field;
 import br.edu.pucsp.virtualtrainer.model.entity.LiveClass;
@@ -59,9 +60,22 @@ public class LiveClassServiceImpl implements LiveClassService {
     }
 
     @Override
-    public List<LiveClassDto> findLiveClasses(String name) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<LiveClassDto> findLiveClasses(String title) {
+        return repository.findByTitle(title)
+                .orElseThrow(() -> new DataNotFoundException(title))
+                .stream()
+                .filter(dates -> dates.getStartTime().isAfter(LocalDateTime.now()))
+                .map(MAPPER::entityToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LiveClassDto> findAllFutureLiveClasses(){
+        return repository.findAll()
+                .stream()
+                .filter(dates -> dates.getStartTime().isAfter(LocalDateTime.now()))
+                .map(MAPPER::entityToDto)
+                .collect(Collectors.toList());
     }
 
     @Override

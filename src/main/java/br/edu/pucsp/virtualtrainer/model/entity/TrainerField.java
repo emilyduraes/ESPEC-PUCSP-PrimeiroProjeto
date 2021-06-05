@@ -1,6 +1,13 @@
 package br.edu.pucsp.virtualtrainer.model.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity @IdClass(value = TrainerFieldId.class)
 @Table(name = "trainer_field")
@@ -8,12 +15,12 @@ public class TrainerField {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "trainerId" )
+    @JoinColumn(name = "trainer_id" )
     private Trainer trainerId;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "fieldId")
+    @JoinColumn(name = "field_id")
     private Field fieldId;
 
     @Column

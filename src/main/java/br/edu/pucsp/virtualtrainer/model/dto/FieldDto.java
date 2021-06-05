@@ -7,7 +7,7 @@ public class FieldDto {
 
     private String name;
 
-    private String category;
+    private CategoryDto category;
 
     private boolean certified;
 
@@ -27,11 +27,11 @@ public class FieldDto {
         this.name = name;
     }
 
-    public String getCategory() {
+    public CategoryDto getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(CategoryDto category) {
         this.category = category;
     }
 

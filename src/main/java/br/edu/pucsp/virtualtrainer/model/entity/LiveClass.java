@@ -26,11 +26,11 @@ public class LiveClass {
     @Column(nullable = false, name = "end_time")
     private LocalDateTime endTime;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "trainer", referencedColumnName = "id")
     private Trainer trainer;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "field", referencedColumnName = "id")
     private Field field;
 

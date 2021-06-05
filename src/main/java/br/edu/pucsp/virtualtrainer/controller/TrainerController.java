@@ -1,6 +1,7 @@
 package br.edu.pucsp.virtualtrainer.controller;
 
 import br.edu.pucsp.virtualtrainer.service.TrainerService;
+import br.edu.pucsp.virtualtrainer.transport.request.TrainerFieldRequest;
 import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
 import br.edu.pucsp.virtualtrainer.transport.response.TrainerListResponse;
 import br.edu.pucsp.virtualtrainer.transport.response.TrainerResponse;
@@ -68,7 +69,7 @@ public class TrainerController {
     @ApiOperation(value = "Set the trainer's field")
     @PostMapping(path = "/setField", produces = APPLICATION_JSON_VALUE, consumes =APPLICATION_JSON_VALUE )
     public void addField(
-            @RequestBody String request){
-        trainerService.addFields(request);
+            @RequestBody TrainerFieldRequest trainerFieldRequest){
+        trainerService.addFields(trainerFieldRequest);
     }
 }

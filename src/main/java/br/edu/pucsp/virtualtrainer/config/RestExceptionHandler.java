@@ -1,5 +1,6 @@
 package br.edu.pucsp.virtualtrainer.config;
 
+import br.edu.pucsp.virtualtrainer.exception.CertificateNotPresentException;
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
@@ -61,6 +62,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         logException(e, req);
 
         return formatResponse("Data not Found", HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CertificateNotPresentException.class)
+    public ResponseEntity<Object> handleCertificateNotPresent(CertificateNotPresentException e, HttpServletRequest req){
+        logException(e, req);
+
+        return formatResponse("This field must have a certificate!", HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
