@@ -12,7 +12,7 @@ import br.edu.pucsp.virtualtrainer.transport.response.CategoryResponse;
 import br.edu.pucsp.virtualtrainer.transport.response.FieldListResponse;
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://35.184.242.241:4200")
 @RestController()
 @RequestMapping("/category")
 public class CategoryController {
