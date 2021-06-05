@@ -9,7 +9,8 @@ public interface LiveClassService {
 
     void createLiveClass(LiveClassRequest request);
     LiveClassDto findLiveClass(Long id);
-    List<LiveClassDto> findLiveClasses(String name);
+    List<LiveClassDto> findLiveClasses(String title);
+    List<LiveClassDto> findAllFutureLiveClasses();
     void deleteLiveClass(Long id);
     void updateLiveClass(LiveClassRequest request);
     void addStudentToLiveClass (Long id, Long studentId);
