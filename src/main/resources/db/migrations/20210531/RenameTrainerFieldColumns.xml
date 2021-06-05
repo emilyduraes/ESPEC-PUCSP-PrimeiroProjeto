@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet author="Emily Duraes" id="20210531-1">
+	<changeSet author="Bruno Gil" id="20210531-1">
+		<dropForeignKeyConstraint
+			baseTableName="trainer_field" constraintName="FK_TRAINERFIELD_FIELD" />
+	</changeSet>
+	<changeSet author="Bruno Gil" id="20210531-2">
+		<dropForeignKeyConstraint
+			baseTableName="trainer_field" constraintName="FK_TRAINERFIELD_TRAINER" />
+	</changeSet>	
+    <changeSet author="Emily Duraes" id="20210531-3">
         <renameColumn  
             columnDataType="BIGINT" 
             newColumnName="field_id" 
@@ -14,4 +22,14 @@
             schemaName="virtual_trainer" 
             tableName="trainer_field"/>
     </changeSet>
+    <changeSet author="Bruno Gil" id="20210531-4">
+        <addForeignKeyConstraint baseColumnNames="field_id" baseTableName="trainer_field" 
+        constraintName="FK_TRAINERFIELD_FIELD" deferrable="false" initiallyDeferred="false" 
+        referencedColumnNames="id" referencedTableName="field"/>
+    </changeSet>
+    <changeSet author="Bruno Gil" id="20210531-5">
+        <addForeignKeyConstraint baseColumnNames="trainer_id" baseTableName="trainer_field" 
+        constraintName="FK_TRAINERFIELD_TRAINER" deferrable="false" initiallyDeferred="false" 
+        referencedColumnNames="id" referencedTableName="trainer"/>
+    </changeSet> 
 </databaseChangeLog>
