@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.pucsp.virtualtrainer.service.LiveClassService;
 import br.edu.pucsp.virtualtrainer.transport.request.LiveClassRequest;
+import br.edu.pucsp.virtualtrainer.transport.response.LiveClassListResponse;
 import br.edu.pucsp.virtualtrainer.transport.response.LiveClassResponse;
 import io.swagger.annotations.ApiOperation;
 
@@ -39,10 +40,22 @@ public class LiveClassController {
         liveClassService.createLiveClass(request);
     }
 
-    @ApiOperation(value = "Find a Live Class from the database")
+    @ApiOperation(value = "Find a Live Class from the database by id")
     @GetMapping(path = "/id/{liveClassId}")
     public LiveClassResponse getLiveClass (@PathVariable Long liveClassId) {
         return new LiveClassResponse(liveClassService.findLiveClass(liveClassId));
+    } 
+
+    @ApiOperation(value = "Find a Live Class from the database by title (only returns classes from the future)")
+    @GetMapping(path = "/title/{liveClassTitle}")
+    public LiveClassListResponse getLiveClasses (@PathVariable String liveClassTitle) {
+        return new LiveClassListResponse(liveClassService.findLiveClasses(liveClassTitle));
+    } 
+
+    @ApiOperation(value = "Recover all Live Classes from the database happening in the future")
+    @GetMapping
+    public LiveClassListResponse getAllFutureLiveClasses() {
+        return new LiveClassListResponse(liveClassService.findAllFutureLiveClasses());
     } 
 
     @ApiOperation(value = "Updates a live class title in the database")

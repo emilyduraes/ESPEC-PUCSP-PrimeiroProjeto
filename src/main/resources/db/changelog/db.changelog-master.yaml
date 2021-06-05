@@ -11,3 +11,5 @@ databaseChangeLog:
       file: db/migrations/20210507/CreateLiveSession.xml
   - include:
       file: db/migrations/20210512/RefactorLiveClass.xml
+  - include:
+      file: db/migrations/20210531/RenameTrainerFieldColumns.xml
