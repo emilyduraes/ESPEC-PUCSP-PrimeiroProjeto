@@ -2,7 +2,7 @@ package br.edu.pucsp.virtualtrainer.controller;
 
 import br.edu.pucsp.virtualtrainer.domain.dto.TrainerDto;
 import br.edu.pucsp.virtualtrainer.service.TrainerServiceImpl;
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 

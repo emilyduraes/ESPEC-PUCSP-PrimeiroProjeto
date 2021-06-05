@@ -1,7 +1,7 @@
 package br.edu.pucsp.virtualtrainer.service.api;
 
 import br.edu.pucsp.virtualtrainer.config.FeignConfig;
-import br.edu.pucsp.virtualtrainer.transport.response.api.ZoomTokenResponse;
+import br.edu.pucsp.virtualtrainer.domain.response.api.ZoomTokenResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;

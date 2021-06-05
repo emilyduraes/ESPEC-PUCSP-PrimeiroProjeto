@@ -3,7 +3,7 @@ package br.edu.pucsp.virtualtrainer.service;
 import java.util.List;
 
 import br.edu.pucsp.virtualtrainer.domain.dto.LiveClassDto;
-import br.edu.pucsp.virtualtrainer.transport.request.LiveClassRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.LiveClassRequest;
 
 public interface LiveClassService {
 

@@ -2,7 +2,7 @@
 
     <cache alias="token">
         <key-type>java.lang.String</key-type>
-        <value-type>br.edu.pucsp.virtualtrainer.transport.response.api.ZoomTokenResponse</value-type>
+        <value-type>br.edu.pucsp.virtualtrainer.domain.response.api.ZoomTokenResponse</value-type>
         <expiry>
             <ttl unit="minutes">60</ttl>
         </expiry>

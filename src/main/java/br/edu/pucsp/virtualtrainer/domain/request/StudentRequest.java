@@ -1,4 +1,4 @@
-package br.edu.pucsp.virtualtrainer.transport.request;
+package br.edu.pucsp.virtualtrainer.domain.request;
 
 import java.time.LocalDate;
 

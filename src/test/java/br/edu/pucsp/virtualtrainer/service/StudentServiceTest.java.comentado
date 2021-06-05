@@ -21,8 +21,8 @@ import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.domain.dto.StudentDto;
 import br.edu.pucsp.virtualtrainer.domain.entity.Student;
 import br.edu.pucsp.virtualtrainer.repository.StudentRepository;
-import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
-import br.edu.pucsp.virtualtrainer.transport.request.StudentUpdateRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.StudentRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.StudentUpdateRequest;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)

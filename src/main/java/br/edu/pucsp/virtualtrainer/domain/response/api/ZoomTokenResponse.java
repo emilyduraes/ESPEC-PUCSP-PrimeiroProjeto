@@ -1,4 +1,4 @@
-package br.edu.pucsp.virtualtrainer.transport.response.api;
+package br.edu.pucsp.virtualtrainer.domain.response.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

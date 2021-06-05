@@ -1,11 +1,9 @@
 package br.edu.pucsp.virtualtrainer.service.api;
 
-import br.edu.pucsp.virtualtrainer.transport.request.api.ZoomMeetingRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.api.ZoomMeetingRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @FeignClient(value = "ZoomApiClient", url = "https://api.zoom.us/v2")
 public interface ZoomApiClient {

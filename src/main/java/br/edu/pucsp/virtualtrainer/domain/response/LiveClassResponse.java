@@ -1,4 +1,4 @@
-package br.edu.pucsp.virtualtrainer.transport.response;
+package br.edu.pucsp.virtualtrainer.domain.response;
 
 import br.edu.pucsp.virtualtrainer.domain.dto.LiveClassDto;
 

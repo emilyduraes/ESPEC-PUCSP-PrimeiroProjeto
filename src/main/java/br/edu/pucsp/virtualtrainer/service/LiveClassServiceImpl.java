@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.edu.pucsp.virtualtrainer.domain.enums.MeetingType;
-import br.edu.pucsp.virtualtrainer.transport.request.api.ZoomMeetingRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.api.ZoomMeetingRequest;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
 import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.LiveClassRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
-import br.edu.pucsp.virtualtrainer.transport.request.LiveClassRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.LiveClassRequest;
 
 @Service
 public class LiveClassServiceImpl implements LiveClassService {

@@ -1,4 +1,4 @@
-package br.edu.pucsp.virtualtrainer.transport.request.api;
+package br.edu.pucsp.virtualtrainer.domain.request.api;
 
 
 import br.edu.pucsp.virtualtrainer.domain.dto.api.MeetingSettingsDto;

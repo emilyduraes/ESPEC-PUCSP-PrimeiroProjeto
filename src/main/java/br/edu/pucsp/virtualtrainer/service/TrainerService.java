@@ -1,8 +1,8 @@
 package br.edu.pucsp.virtualtrainer.service;
 
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerFieldRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerFieldRequest;
 import br.edu.pucsp.virtualtrainer.domain.dto.TrainerDto;
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerRequest;
 
 import java.util.List;
 

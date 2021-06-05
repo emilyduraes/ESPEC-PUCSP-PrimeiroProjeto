@@ -16,8 +16,8 @@ import br.edu.pucsp.virtualtrainer.domain.entity.TrainerField;
 import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerFieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerFieldRequest;
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerFieldRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerRequest;
 
 
 @Service

@@ -1,7 +1,7 @@
 package br.edu.pucsp.virtualtrainer.service;
 
 import br.edu.pucsp.virtualtrainer.service.api.ZoomApiClient;
-import br.edu.pucsp.virtualtrainer.transport.request.api.ZoomMeetingRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.api.ZoomMeetingRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -27,7 +27,8 @@ public class ZoomServiceImpl implements ZoomService{
     @Override
     public String createMeeting(ZoomMeetingRequest request) {
 
-        String token = zoomAuthService.getToken();
+        Long clientId = 1L;//TODO pegar isso de algum lugar
+        String token = zoomAuthService.getToken(clientId);
 
         var header = new HttpHeaders();
         header.add(AUTHORIZATION, "Bearer " + token);

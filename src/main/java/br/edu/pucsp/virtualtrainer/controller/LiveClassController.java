@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.pucsp.virtualtrainer.service.LiveClassService;
-import br.edu.pucsp.virtualtrainer.transport.request.LiveClassRequest;
-import br.edu.pucsp.virtualtrainer.transport.response.LiveClassListResponse;
-import br.edu.pucsp.virtualtrainer.transport.response.LiveClassResponse;
+import br.edu.pucsp.virtualtrainer.domain.request.LiveClassRequest;
+import br.edu.pucsp.virtualtrainer.domain.response.LiveClassListResponse;
+import br.edu.pucsp.virtualtrainer.domain.response.LiveClassResponse;
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "http://localhost:4200")
