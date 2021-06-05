@@ -1,6 +1,6 @@
 package br.edu.pucsp.virtualtrainer.transport.response;
 
-import br.edu.pucsp.virtualtrainer.model.dto.CategoryDto;
+import br.edu.pucsp.virtualtrainer.domain.dto.CategoryDto;
 
 public class CategoryResponse {
     

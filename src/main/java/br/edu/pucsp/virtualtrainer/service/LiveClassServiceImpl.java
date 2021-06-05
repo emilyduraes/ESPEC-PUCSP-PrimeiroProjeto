@@ -1,8 +1,6 @@
 package br.edu.pucsp.virtualtrainer.service;
 
 import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,10 +11,6 @@ import org.springframework.stereotype.Service;
 
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.LiveClassMapper;
-import br.edu.pucsp.virtualtrainer.model.dto.LiveClassDto;
-import br.edu.pucsp.virtualtrainer.model.entity.Field;
-import br.edu.pucsp.virtualtrainer.model.entity.LiveClass;
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
 import br.edu.pucsp.virtualtrainer.domain.dto.LiveClassDto;
 import br.edu.pucsp.virtualtrainer.domain.entity.Field;
 import br.edu.pucsp.virtualtrainer.domain.entity.LiveClass;

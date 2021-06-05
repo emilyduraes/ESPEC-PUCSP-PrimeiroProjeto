@@ -2,7 +2,7 @@ package br.edu.pucsp.virtualtrainer.transport.response;
 
 import java.util.List;
 
-import br.edu.pucsp.virtualtrainer.model.dto.CategoryDto;
+import br.edu.pucsp.virtualtrainer.domain.dto.CategoryDto;
 
 public class CategoryListResponse {
     private List<CategoryDto> categories;

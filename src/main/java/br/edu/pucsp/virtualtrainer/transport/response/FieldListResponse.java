@@ -2,7 +2,7 @@ package br.edu.pucsp.virtualtrainer.transport.response;
 
 import java.util.List;
 
-import br.edu.pucsp.virtualtrainer.model.dto.FieldDto;
+import br.edu.pucsp.virtualtrainer.domain.dto.FieldDto;
 
 public class FieldListResponse {
     

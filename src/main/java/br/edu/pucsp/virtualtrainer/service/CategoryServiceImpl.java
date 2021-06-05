@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.CategoryMapper;
 import br.edu.pucsp.virtualtrainer.mapper.FieldMapper;
-import br.edu.pucsp.virtualtrainer.model.dto.CategoryDto;
-import br.edu.pucsp.virtualtrainer.model.dto.FieldDto;
-import br.edu.pucsp.virtualtrainer.model.entity.Category;
+import br.edu.pucsp.virtualtrainer.domain.dto.CategoryDto;
+import br.edu.pucsp.virtualtrainer.domain.dto.FieldDto;
+import br.edu.pucsp.virtualtrainer.domain.entity.Category;
 import br.edu.pucsp.virtualtrainer.repository.CategoryRepository;
 import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
 

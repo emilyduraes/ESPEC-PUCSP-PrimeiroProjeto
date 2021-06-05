@@ -1,4 +1,4 @@
-package br.edu.pucsp.virtualtrainer.model.dto;
+package br.edu.pucsp.virtualtrainer.domain.dto;
 
 public class CategoryDto {
     
