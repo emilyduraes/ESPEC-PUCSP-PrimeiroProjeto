@@ -1,11 +1,18 @@
 package br.edu.pucsp.virtualtrainer.domain.dto.api;
 
-public class MeetingSettingsDto {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class MeetingSettingsRequestDto {
+
+    @JsonProperty("host_video")
     private boolean hostVideo;
+    @JsonProperty("mute_upon_entry")
     private boolean muteUponEntry;
-    private Integer approvalType;
+    @JsonProperty("registration_type")
+    private Integer registrationType;
+    @JsonProperty("auto_recording")
     private String autoRecording = "none";
+    @JsonProperty("waiting_room")
     private boolean waitingRoom;
 
     public boolean isVideoStartedByHost() {
@@ -24,12 +31,12 @@ public class MeetingSettingsDto {
         this.muteUponEntry = muteUponEntry;
     }
 
-    public Integer getApprovalType() {
-        return approvalType;
+    public Integer getRegistrationType() {
+        return registrationType;
     }
 
-    public void setApprovalType(Integer approvalType) {
-        this.approvalType = approvalType;
+    public void setRegistrationType(Integer registrationType) {
+        this.registrationType = registrationType;
     }
 
     public String isAutoRecording() {

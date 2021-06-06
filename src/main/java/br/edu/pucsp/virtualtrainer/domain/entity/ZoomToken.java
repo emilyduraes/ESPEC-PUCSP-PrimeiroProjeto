@@ -3,7 +3,7 @@ package br.edu.pucsp.virtualtrainer.domain.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import static java.time.temporal.ChronoUnit.*;
 
 @Entity
 @Table(name = "zoom_token")
@@ -23,8 +23,8 @@ public class ZoomToken {
     private String accessToken;
     @Column(nullable = false, name = "refresh_token")
     private String refreshToken;
-    @Column(nullable = false, name = "expires_at")
-    private LocalDateTime expiresAt;
+    @Column(nullable = false, name = "expiration_date")
+    private LocalDateTime expirationDate;
 
     public ZoomToken() {
     }
@@ -34,7 +34,7 @@ public class ZoomToken {
         this.student = student;
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
-        this.expiresAt = LocalDateTime.now().plus(expiresIn, ChronoUnit.SECONDS);
+        this.expirationDate = LocalDateTime.now().plus(expiresIn, SECONDS);
     }
 
     public Long getId() {
@@ -77,11 +77,11 @@ public class ZoomToken {
         this.refreshToken = refreshToken;
     }
 
-    public LocalDateTime getExpiresAt() {
-        return expiresAt;
+    public LocalDateTime getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setExpiresAt(LocalDateTime expiresAt) {
-        this.expiresAt = expiresAt;
+    public void setExpirationDate(Integer expiresIn) {
+        this.expirationDate = LocalDateTime.now().plus(expiresIn, SECONDS);
     }
 }

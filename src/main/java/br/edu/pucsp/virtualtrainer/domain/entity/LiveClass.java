@@ -23,8 +23,8 @@ public class LiveClass {
     @Column(nullable = false, name = "start_time")
     private LocalDateTime startTime;
     
-    @Column(nullable = false, name = "end_time")
-    private LocalDateTime endTime;
+    @Column(nullable = false)
+    private Integer duration;
 
     @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "trainer", referencedColumnName = "id")
@@ -39,6 +39,12 @@ public class LiveClass {
 
     @Column(nullable = false)
     private String type;
+
+    @Column(nullable = false, name = "start_url")
+    private String startUrl;
+
+    @Column(nullable = false, name = "join_url")
+    private String joinUrl;
 
     public Long getId() {
         return id;
@@ -56,12 +62,12 @@ public class LiveClass {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
+    public Integer getDuration() {
+        return duration;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     public Trainer getTrainer() {
@@ -94,5 +100,21 @@ public class LiveClass {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStartUrl() {
+        return startUrl;
+    }
+
+    public void setStartUrl(String startUrl) {
+        this.startUrl = startUrl;
+    }
+
+    public String getJoinUrl() {
+        return joinUrl;
+    }
+
+    public void setJoinUrl(String joinUrl) {
+        this.joinUrl = joinUrl;
     }
 }

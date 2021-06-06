@@ -1,14 +1,14 @@
 package br.edu.pucsp.virtualtrainer.domain.enums;
 
-public enum ApprovalType {
+public enum RegistrationType {
 
     AUTO_APPROVE(0),
-    MANUAL(1),
-    NOT_NEEDED(2);
+    MANUAL_APPROVE(1),
+    APPROVE_NOT_NEEDED(2);
 
     private Integer type;
 
-    private ApprovalType(Integer type) {
+    private RegistrationType(Integer type) {
         this.type = type;
     }
 

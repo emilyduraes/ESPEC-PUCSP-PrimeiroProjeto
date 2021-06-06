@@ -1,6 +1,7 @@
 package br.edu.pucsp.virtualtrainer.service.api;
 
 import br.edu.pucsp.virtualtrainer.domain.request.api.ZoomMeetingRequest;
+import br.edu.pucsp.virtualtrainer.domain.response.api.ZoomMetingResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,6 @@ import org.springframework.web.bind.annotation.*;
 public interface ZoomApiClient {
 
     @PostMapping(path = "/users/me/meetings")
-    String createMeeting(@RequestHeader HttpHeaders header,
-                         @RequestBody ZoomMeetingRequest request);
+    ZoomMetingResponse createMeeting(@RequestHeader HttpHeaders header,
+                                     @RequestBody ZoomMeetingRequest request);
 }

@@ -1,21 +1,29 @@
 package br.edu.pucsp.virtualtrainer.domain.request.api;
 
 
-import br.edu.pucsp.virtualtrainer.domain.dto.api.MeetingSettingsDto;
-import br.edu.pucsp.virtualtrainer.domain.enums.ApprovalType;
+import br.edu.pucsp.virtualtrainer.domain.dto.api.MeetingSettingsRequestDto;
 import br.edu.pucsp.virtualtrainer.domain.enums.MeetingType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
+
+import static br.edu.pucsp.virtualtrainer.domain.enums.RegistrationType.*;
 
 public class ZoomMeetingRequest {
 
     private String topic;
     private String agenda;
     private Integer type;
+    @JsonProperty("start_time")
     private LocalDateTime startTime;
     private Integer duration;
-    private MeetingSettingsDto settings;
+    @JsonIgnore
+    private Long trainerId;
+    private MeetingSettingsRequestDto settings;
 
+    public ZoomMeetingRequest() {
+    }
 
     public ZoomMeetingRequest(Builder builder) {
         this.topic = builder.topic;
@@ -24,6 +32,7 @@ public class ZoomMeetingRequest {
         this.startTime = builder.startTime;
         this.duration = builder.duration;
         this.settings = builder.settings;
+        this.trainerId = builder.trainerId;
     }
 
     public String getTopic() {
@@ -46,7 +55,11 @@ public class ZoomMeetingRequest {
         return duration;
     }
 
-    public MeetingSettingsDto getSettings() {
+    public Long getTrainerId() {
+        return trainerId;
+    }
+
+    public MeetingSettingsRequestDto getSettings() {
         return settings;
     }
 
@@ -58,10 +71,11 @@ public class ZoomMeetingRequest {
         private Integer type;
         private LocalDateTime startTime;
         private Integer duration;
-        private MeetingSettingsDto settings;
+        private Long trainerId;
+        private MeetingSettingsRequestDto settings;
 
         public Builder(){
-            this.settings = new MeetingSettingsDto();
+            this.settings = new MeetingSettingsRequestDto();
         }
 
         public Builder withName(String name){
@@ -89,10 +103,15 @@ public class ZoomMeetingRequest {
             return this;
         }
 
+        public Builder byHost(Long host){
+            this.trainerId = host;
+            return this;
+        }
+
         public Builder withDefaultSettings(){
             this.settings.setVideoStartedByHost(true);
             this.settings.setMuteUponEntry(true);
-            this.settings.setApprovalType(ApprovalType.NOT_NEEDED.getValue());
+            this.settings.setRegistrationType(APPROVE_NOT_NEEDED.getValue());
             this.settings.setAutoRecording("local");
             this.settings.setWaitingRoom(true);
             return this;

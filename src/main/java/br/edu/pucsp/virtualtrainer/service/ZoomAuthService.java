@@ -6,6 +6,6 @@ public interface ZoomAuthService {
 
     void requestAuthorization(String clientId);
     ZoomTokenResponse requestToken(String code, String userId);
-    ZoomTokenResponse refreshToken(String refreshToken, String userId);
+    ZoomTokenResponse refreshToken(String refreshToken, Long userId);
     String getToken(Long clientId);
 }

@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.edu.pucsp.virtualtrainer.domain.enums.MeetingType;
 import br.edu.pucsp.virtualtrainer.domain.request.api.ZoomMeetingRequest;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
@@ -12,13 +11,12 @@ import org.springframework.stereotype.Service;
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.LiveClassMapper;
 import br.edu.pucsp.virtualtrainer.domain.dto.LiveClassDto;
-import br.edu.pucsp.virtualtrainer.domain.entity.Field;
-import br.edu.pucsp.virtualtrainer.domain.entity.LiveClass;
-import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
 import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.LiveClassRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
 import br.edu.pucsp.virtualtrainer.domain.request.LiveClassRequest;
+
+import static br.edu.pucsp.virtualtrainer.domain.enums.MeetingType.SCHEDULED;
 
 @Service
 public class LiveClassServiceImpl implements LiveClassService {
@@ -31,49 +29,42 @@ public class LiveClassServiceImpl implements LiveClassService {
 
     FieldRepository fieldRepository;
 
-    ZoomService zoomService;
+    ZoomApiService zoomApiService;
 
     public LiveClassServiceImpl(LiveClassRepository repository, TrainerRepository trainerRepository,
-            FieldRepository fieldRepository, ZoomService zoomService) {
+            FieldRepository fieldRepository, ZoomApiService zoomApiService) {
         this.repository = repository;
         this.trainerRepository = trainerRepository;
         this.fieldRepository = fieldRepository;
-        this.zoomService = zoomService;
+        this.zoomApiService = zoomApiService;
     }
 
     @Override
     public void createLiveClass(LiveClassRequest request) {
+        var trainer = trainerRepository.findById(request.getTrainer()).orElseThrow(() -> new DataNotFoundException(request.getTrainer()));
+        var field = fieldRepository.findById(request.getField()).orElseThrow(() -> new DataNotFoundException(request.getField()));
+
         var meetingRequest = new ZoomMeetingRequest.Builder()
                 .withName(request.getTitle())
-                .withDescription("Description")//TODO adicionar campo no request
-                .type(MeetingType.SCHEDULED)
+                .withDescription("Description")
+                .byHost(request.getTrainer())
+                .type(SCHEDULED)
                 .at(request.getStartTime())
-                .duration(30)//TODO alterar o request para passar a duração em vez do inicio e fim
+                .duration(request.getDuration())
                 .withDefaultSettings()
                 .build();
 
+        //TODO criação apenas para o perfil de treinador
+        var response = zoomApiService.createMeeting(meetingRequest);
 
-
-        String response = zoomService.createMeeting(meetingRequest);
-
-        Trainer trainer = trainerRepository.findById(request.getTrainer()).orElseThrow(() -> new DataNotFoundException(request.getTrainer()));
-        Field field = fieldRepository.findById(request.getField()).orElseThrow(() -> new DataNotFoundException(request.getField()));
-
-        LiveClass liveClass = new LiveClass();
-
-        liveClass.setField(field);
-        liveClass.setTrainer(trainer);
-        liveClass.setStartTime(request.getStartTime());
-        liveClass.setEndTime(request.getEndTime());
-        liveClass.setTitle(request.getTitle());
-        liveClass.setType(request.getType());
+        var liveClass = MAPPER.createEntity(request, trainer, field, response);
 
         repository.save(liveClass);
     }
 
     @Override
     public LiveClassDto findLiveClass(Long id) {
-        LiveClass liveClass = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
+        var liveClass = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         return MAPPER.entityToDto(liveClass);
     }
 
@@ -107,7 +98,7 @@ public class LiveClassServiceImpl implements LiveClassService {
 
     @Override
     public void updateLiveClass(LiveClassRequest request) {
-        LiveClass liveClass = repository.findById(request.getId()).orElseThrow(() -> new DataNotFoundException(request.getId()));
+        var liveClass = repository.findById(request.getId()).orElseThrow(() -> new DataNotFoundException(request.getId()));
         liveClass.setTitle(request.getTitle());
         repository.save(liveClass);
     }

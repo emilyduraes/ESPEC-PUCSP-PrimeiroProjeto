@@ -2,9 +2,7 @@ package br.edu.pucsp.virtualtrainer.domain.request;
 
 import java.time.LocalDateTime;
 
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -23,10 +21,10 @@ public class LiveClassRequest {
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startTime;
     
-    @ApiModelProperty(name = "endTime")
-    @Future(message = "This is not a valid end time")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime endTime;
+    @ApiModelProperty(name = "duration")
+    @Max(60)
+    @Min(5)
+    private Integer duration;
 
     @ApiModelProperty(name = "trainerId")
     private Long trainer;
@@ -42,7 +40,11 @@ public class LiveClassRequest {
     @ApiModelProperty(name = "type")
     private String type;
 
-    
+    @ApiModelProperty(name = "title")
+    @NotEmpty(message = "Please inform a description for the class")
+    @Size(min = 10, max = 200, message = "A description should have between 10 and 200 characters")
+    private String description;
+
 
     public Long getId() {
         return id;
@@ -60,12 +62,12 @@ public class LiveClassRequest {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
+    public Integer getDuration() {
+        return duration;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     public Long getTrainer() {
@@ -98,5 +100,13 @@ public class LiveClassRequest {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

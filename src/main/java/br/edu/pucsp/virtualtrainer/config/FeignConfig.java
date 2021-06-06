@@ -2,7 +2,6 @@ package br.edu.pucsp.virtualtrainer.config;
 
 import feign.Logger;
 import feign.RequestInterceptor;
-import feign.form.ContentType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
