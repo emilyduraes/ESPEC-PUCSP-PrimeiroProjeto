@@ -12,4 +12,7 @@ public interface ZoomApiClient {
     @PostMapping(path = "/users/me/meetings")
     ZoomMetingResponse createMeeting(@RequestHeader HttpHeaders header,
                                      @RequestBody ZoomMeetingRequest request);
+
+    @GetMapping(path = "/users/{userId}/meetings")
+    void meetings(String userId);
 }

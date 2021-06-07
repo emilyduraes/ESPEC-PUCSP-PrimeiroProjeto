@@ -13,4 +13,7 @@ public interface LiveClassRepository extends JpaRepository<LiveClass, Long> {
 
     @Query("SELECT l FROM LiveClass l WHERE lower(l.title) LIKE lower(concat('%', concat(:title, '%')))")
     Optional<List<LiveClass>> findByTitle(@Param("title") String title);
+
+    @Query("SELECT l FROM LiveClass l LEFT JOIN FETCH l.students WHERE l.id = :liveClassId ")
+    Optional<LiveClass> findByIdWithDetails(Long liveClassId);
 }

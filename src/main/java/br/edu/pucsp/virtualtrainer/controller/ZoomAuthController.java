@@ -31,4 +31,9 @@ public class ZoomAuthController {
                                      @RequestParam("state") Long userId){
         return service.refreshToken(refreshToken, userId);
     }
+
+    @GetMapping(path = "/deactivate")
+    public void deactivate(){
+
+    }
 }

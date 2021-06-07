@@ -7,7 +7,7 @@ import br.edu.pucsp.virtualtrainer.domain.dto.FieldDto;
 
 public interface CategoryService {
     
-    CategoryDto findCategory (Long id);
+    CategoryDto findCategory (Long categoryId);
     List<CategoryDto> findAllCategories();
     List<FieldDto> findFieldsByCategory(Long categoryId);
     

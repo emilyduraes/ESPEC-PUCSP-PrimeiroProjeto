@@ -1,6 +1,9 @@
 package br.edu.pucsp.virtualtrainer.domain.dto;
 
+import br.edu.pucsp.virtualtrainer.domain.entity.Student;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class LiveClassDto {
 
@@ -8,7 +11,7 @@ public class LiveClassDto {
     
     private LocalDateTime startTime;
     
-    private LocalDateTime endTime;
+    private Integer duration;
 
     private TrainerDto trainer;
     
@@ -17,6 +20,12 @@ public class LiveClassDto {
     private String title;
 
     private String type;
+
+    private String startUrl;
+
+    private String joinUrl;
+
+    private List<Student> students;
     
     public Long getId() {
         return id;
@@ -34,12 +43,12 @@ public class LiveClassDto {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
+    public Integer getDuration() {
+        return duration;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     public TrainerDto getTrainer() {
@@ -72,5 +81,29 @@ public class LiveClassDto {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStartUrl() {
+        return startUrl;
+    }
+
+    public void setStartUrl(String startUrl) {
+        this.startUrl = startUrl;
+    }
+
+    public String getJoinUrl() {
+        return joinUrl;
+    }
+
+    public void setJoinUrl(String joinUrl) {
+        this.joinUrl = joinUrl;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }

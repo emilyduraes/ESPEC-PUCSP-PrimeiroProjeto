@@ -39,4 +39,8 @@ public class ZoomApiServiceImpl implements ZoomApiService {
         return response;
     }
 
+    @Override
+    public void listMeetings(String  userId) {
+        zoomApiClient.meetings(userId);
+    }
 }

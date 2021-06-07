@@ -10,4 +10,37 @@
             <heap unit="kB">1000</heap>
         </resources>
     </cache>
+
+    <cache alias="categoryById">
+        <key-type>java.lang.Long</key-type>
+        <value-type>br.edu.pucsp.virtualtrainer.domain.dto.CategoryDto</value-type>
+        <expiry>
+            <ttl unit="minutes">60</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">1000</heap>
+        </resources>
+    </cache>
+
+    <cache alias="category">
+        <key-type>org.springframework.cache.interceptor.SimpleKeyGenerator</key-type>
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">60</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">1000</heap>
+        </resources>
+    </cache>
+
+    <cache alias="fieldByCategory">
+        <key-type>java.lang.Long</key-type>
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">60</ttl>
+        </expiry>
+        <resources>
+            <heap unit="kB">1000</heap>
+        </resources>
+    </cache>
 </config>

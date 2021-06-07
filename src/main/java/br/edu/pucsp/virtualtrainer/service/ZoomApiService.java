@@ -6,4 +6,6 @@ import br.edu.pucsp.virtualtrainer.domain.response.api.ZoomMetingResponse;
 public interface ZoomApiService {
 
     ZoomMetingResponse createMeeting(ZoomMeetingRequest request);
+
+    void listMeetings(String userId);
 }

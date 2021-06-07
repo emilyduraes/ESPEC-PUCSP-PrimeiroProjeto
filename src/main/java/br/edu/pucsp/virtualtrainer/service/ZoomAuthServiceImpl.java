@@ -25,7 +25,7 @@ public class ZoomAuthServiceImpl implements ZoomAuthService{
     private static final Logger log = LoggerFactory.getLogger(ZoomAuthServiceImpl.class);
     private static final TokenMapper MAPPER = Mappers.getMapper(TokenMapper.class);
 
-    private static final String SERVER = "https://fluffy-eagle-45.loca.lt";
+    private static final String SERVER = "https://quick-liger-52.loca.lt";
     private static final String CONTEXT = "/virtual-trainer";
     private static final String REDIRECT_URL = SERVER + CONTEXT + "/zoom/auth/callback/";
     private static final String REFRESH_TOKEN = "refresh_token";
@@ -35,10 +35,10 @@ public class ZoomAuthServiceImpl implements ZoomAuthService{
     private static final String CODE = "code";
     private static final String CREDENTIAL_NAME = "Basic";
 
-    @Value("${zoom.client.id}")
+    @Value("${zoom.client.dev.id}")
     private String clientId;
 
-    @Value("${zoom.client.secret}")
+    @Value("${zoom.client.dev.secret}")
     private String clientSecret;
 
     private final ZoomAuthClient zoomAuthClient;

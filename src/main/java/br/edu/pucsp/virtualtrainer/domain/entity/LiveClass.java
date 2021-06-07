@@ -1,16 +1,9 @@
 package br.edu.pucsp.virtualtrainer.domain.entity;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "live_class")
@@ -45,6 +38,9 @@ public class LiveClass {
 
     @Column(nullable = false, name = "join_url")
     private String joinUrl;
+
+    @OneToMany(mappedBy = "liveClassId")
+    private Set<LiveClassStudents> students;
 
     public Long getId() {
         return id;
@@ -116,5 +112,13 @@ public class LiveClass {
 
     public void setJoinUrl(String joinUrl) {
         this.joinUrl = joinUrl;
+    }
+
+    public Set<LiveClassStudents> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<LiveClassStudents> students) {
+        this.students = students;
     }
 }

@@ -4,6 +4,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import javax.validation.Valid;
 
+import br.edu.pucsp.virtualtrainer.domain.request.AddStudentRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -68,5 +69,11 @@ public class LiveClassController {
     @DeleteMapping(path = "/{liveClassId}")
     public void deleteLiveClass(@PathVariable Long liveClassId) {
         liveClassService.deleteLiveClass(liveClassId);
+    }
+
+    @ApiOperation(value = "Add a student to an existing class")
+    @PostMapping(path = "/addStudent")
+    public void addStudent(@RequestBody AddStudentRequest request){
+        liveClassService.addStudentToLiveClass(request);
     }
 }

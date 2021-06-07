@@ -93,10 +93,10 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public void addFields(TrainerFieldRequest trainerFieldRequest){
-        Field field = fieldRepository.findById(trainerFieldRequest.getFieldId()).orElseThrow(() -> new DataNotFoundException(trainerFieldRequest.getFieldId()));
-        Trainer trainer = repository.findById(trainerFieldRequest.getTrainerId()).orElseThrow(() -> new DataNotFoundException(trainerFieldRequest.getTrainerId()));
+        var field = fieldRepository.findById(trainerFieldRequest.getFieldId()).orElseThrow(() -> new DataNotFoundException(trainerFieldRequest.getFieldId()));
+        var trainer = repository.findById(trainerFieldRequest.getTrainerId()).orElseThrow(() -> new DataNotFoundException(trainerFieldRequest.getTrainerId()));
 
-        TrainerField trainerField = new TrainerField(trainer, field);
+        var trainerField = new TrainerField(trainer, field);
         if (field.isCertified()){
             if(trainerFieldRequest.getCertificate() != null){
                 trainerField.setCertificate(trainerFieldRequest.getCertificate());

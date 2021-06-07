@@ -21,4 +21,9 @@ public class ZoomApiController {
         return zoomApiService.createMeeting(request);
     }
 
+    @GetMapping(path = "/meeting")
+    public void listUserMeetings(String userId){
+        zoomApiService.listMeetings(userId);
+    }
+
 }
