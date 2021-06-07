@@ -7,6 +7,7 @@ import br.edu.pucsp.virtualtrainer.transport.response.TrainerListResponse;
 import br.edu.pucsp.virtualtrainer.transport.response.TrainerResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,6 +27,7 @@ public class TrainerController {
 
     @ApiOperation(value = "Insert a trainer into the database")
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTrainer(
             @RequestBody @Valid TrainerRequest request){

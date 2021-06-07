@@ -13,3 +13,5 @@ databaseChangeLog:
       file: db/migrations/20210512/RefactorLiveClass.xml
   - include:
       file: db/migrations/20210531/RenameTrainerFieldColumns.xml
+  - include:
+      file: db/migrations/20210606/CreateTableAuthUser.xml
