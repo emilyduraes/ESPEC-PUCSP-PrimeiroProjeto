@@ -25,9 +25,9 @@ public class ZoomAuthServiceImpl implements ZoomAuthService{
     private static final Logger log = LoggerFactory.getLogger(ZoomAuthServiceImpl.class);
     private static final TokenMapper MAPPER = Mappers.getMapper(TokenMapper.class);
 
-    private static final String SERVER = "https://quick-liger-52.loca.lt";
-    private static final String CONTEXT = "/virtual-trainer";
-    private static final String REDIRECT_URL = SERVER + CONTEXT + "/zoom/auth/callback/";
+    private static final String DEV_SERVER = "https://quick-liger-52.loca.lt/virtual-trainer";
+    private static final String PROD_SERVER = "http://146.148.52.70/virtual-trainer";
+    private static final String REDIRECT_URL = PROD_SERVER + "/zoom/auth/callback/";
     private static final String REFRESH_TOKEN = "refresh_token";
     private static final String AUTHORIZATION_CODE = "authorization_code";
     private static final String AUTHORIZATION = "Authorization";
