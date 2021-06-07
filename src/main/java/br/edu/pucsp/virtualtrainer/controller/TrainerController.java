@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://35.184.242.241:4200")
 @RestController()
 @RequestMapping("/trainer")
 public class TrainerController {
@@ -56,6 +56,7 @@ public class TrainerController {
 
     @ApiOperation(value = "Update a trainer's info")
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public void updateTrainer(
             @RequestBody @Valid TrainerRequest request){
         trainerService.updateTrainer(request);
@@ -63,6 +64,7 @@ public class TrainerController {
 
     @ApiOperation(value = "Delete a trainer")
     @DeleteMapping(path = "/{trainerId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteTrainer(
             @PathVariable Long trainerId){
         trainerService.deleteTrainer(trainerId);
