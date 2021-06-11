@@ -18,7 +18,6 @@ public class LiveClassRequest {
 
     @ApiModelProperty(name = "startTime")
     @Future(message = "This is not a valid start time")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startTime;
     
     @ApiModelProperty(name = "duration")
@@ -34,7 +33,7 @@ public class LiveClassRequest {
 
     @ApiModelProperty(name = "title")
     @NotEmpty(message = "The title cannot be null or empty")
-    @Size(min = 3, max = 100, message = "A title should have between 3 and 255 characters")
+    @Size(min = 3, max = 255, message = "A title should have between 3 and 255 characters")
     private String title;
 
     @ApiModelProperty(name = "type")
