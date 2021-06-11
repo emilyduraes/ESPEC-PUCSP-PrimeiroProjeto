@@ -1,8 +1,8 @@
 package br.edu.pucsp.virtualtrainer.mapper;
 
-import br.edu.pucsp.virtualtrainer.model.dto.TrainerDto;
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
+import br.edu.pucsp.virtualtrainer.domain.dto.TrainerDto;
+import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

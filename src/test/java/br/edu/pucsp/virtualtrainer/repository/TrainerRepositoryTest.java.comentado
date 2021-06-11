@@ -1,6 +1,6 @@
 package br.edu.pucsp.virtualtrainer.repository;
 
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
+import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.dao.DataIntegrityViolationException;

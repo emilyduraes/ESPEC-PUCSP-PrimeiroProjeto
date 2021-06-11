@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Objects.nonNull;
 
-@ControllerAdvice
+//@ControllerAdvice
 @Order
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 

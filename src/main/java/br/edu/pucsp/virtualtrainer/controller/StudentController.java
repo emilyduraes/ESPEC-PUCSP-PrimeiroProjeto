@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.pucsp.virtualtrainer.service.StudentService;
-import br.edu.pucsp.virtualtrainer.transport.request.StudentRequest;
-import br.edu.pucsp.virtualtrainer.transport.response.StudentListResponse;
-import br.edu.pucsp.virtualtrainer.transport.response.StudentResponse;
+import br.edu.pucsp.virtualtrainer.domain.request.StudentRequest;
+import br.edu.pucsp.virtualtrainer.domain.response.StudentListResponse;
+import br.edu.pucsp.virtualtrainer.domain.response.StudentResponse;
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "http://localhost:4200")

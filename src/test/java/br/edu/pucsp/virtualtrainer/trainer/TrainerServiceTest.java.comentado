@@ -1,10 +1,10 @@
 package br.edu.pucsp.virtualtrainer.trainer;
 
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
+import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
 import br.edu.pucsp.virtualtrainer.service.TrainerServiceImpl;
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
-import br.edu.pucsp.virtualtrainer.transport.response.TrainerResponse;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerRequest;
+import br.edu.pucsp.virtualtrainer.domain.response.TrainerResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.pucsp.virtualtrainer.service.CategoryService;
-import br.edu.pucsp.virtualtrainer.transport.response.CategoryListResponse;
-import br.edu.pucsp.virtualtrainer.transport.response.CategoryResponse;
-import br.edu.pucsp.virtualtrainer.transport.response.FieldListResponse;
+import br.edu.pucsp.virtualtrainer.domain.response.CategoryListResponse;
+import br.edu.pucsp.virtualtrainer.domain.response.CategoryResponse;
+import br.edu.pucsp.virtualtrainer.domain.response.FieldListResponse;
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "http://localhost:4200")

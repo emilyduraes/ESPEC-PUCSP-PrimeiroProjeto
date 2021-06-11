@@ -4,6 +4,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import javax.validation.Valid;
 
+import br.edu.pucsp.virtualtrainer.domain.request.AddStudentRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,9 +18,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.pucsp.virtualtrainer.service.LiveClassService;
-import br.edu.pucsp.virtualtrainer.transport.request.LiveClassRequest;
-import br.edu.pucsp.virtualtrainer.transport.response.LiveClassListResponse;
-import br.edu.pucsp.virtualtrainer.transport.response.LiveClassResponse;
+import br.edu.pucsp.virtualtrainer.domain.request.LiveClassRequest;
+import br.edu.pucsp.virtualtrainer.domain.response.LiveClassListResponse;
+import br.edu.pucsp.virtualtrainer.domain.response.LiveClassResponse;
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -68,5 +69,11 @@ public class LiveClassController {
     @DeleteMapping(path = "/{liveClassId}")
     public void deleteLiveClass(@PathVariable Long liveClassId) {
         liveClassService.deleteLiveClass(liveClassId);
+    }
+
+    @ApiOperation(value = "Add a student to an existing class")
+    @PostMapping(path = "/addStudent")
+    public void addStudent(@RequestBody AddStudentRequest request){
+        liveClassService.addStudentToLiveClass(request);
     }
 }

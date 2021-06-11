@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import br.edu.pucsp.virtualtrainer.model.entity.Student;
+import br.edu.pucsp.virtualtrainer.domain.entity.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
