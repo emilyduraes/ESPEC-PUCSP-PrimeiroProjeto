@@ -2,8 +2,9 @@ package br.edu.pucsp.virtualtrainer.service;
 
 import java.util.List;
 
-import br.edu.pucsp.virtualtrainer.model.dto.LiveClassDto;
-import br.edu.pucsp.virtualtrainer.transport.request.LiveClassRequest;
+import br.edu.pucsp.virtualtrainer.domain.dto.LiveClassDto;
+import br.edu.pucsp.virtualtrainer.domain.request.AddStudentRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.LiveClassRequest;
 
 public interface LiveClassService {
 
@@ -13,6 +14,6 @@ public interface LiveClassService {
     List<LiveClassDto> findAllFutureLiveClasses();
     void deleteLiveClass(Long id);
     void updateLiveClass(LiveClassRequest request);
-    void addStudentToLiveClass (Long id, Long studentId);
+    void addStudentToLiveClass (AddStudentRequest request);
 
 }

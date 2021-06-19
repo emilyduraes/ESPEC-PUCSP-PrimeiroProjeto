@@ -1,62 +1,77 @@
 package br.edu.pucsp.virtualtrainer.service;
 
+import br.edu.pucsp.virtualtrainer.domain.dto.LiveClassDto;
+import br.edu.pucsp.virtualtrainer.domain.entity.LiveClassStudents;
+import br.edu.pucsp.virtualtrainer.domain.request.AddStudentRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.LiveClassRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.api.ZoomMeetingRequest;
+import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
+import br.edu.pucsp.virtualtrainer.mapper.LiveClassMapper;
+import br.edu.pucsp.virtualtrainer.repository.*;
+import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.mapstruct.factory.Mappers;
-import org.springframework.stereotype.Service;
-
-import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
-import br.edu.pucsp.virtualtrainer.mapper.LiveClassMapper;
-import br.edu.pucsp.virtualtrainer.model.dto.LiveClassDto;
-import br.edu.pucsp.virtualtrainer.model.entity.Field;
-import br.edu.pucsp.virtualtrainer.model.entity.LiveClass;
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
-import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
-import br.edu.pucsp.virtualtrainer.repository.LiveClassRepository;
-import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
-import br.edu.pucsp.virtualtrainer.transport.request.LiveClassRequest;
+import static br.edu.pucsp.virtualtrainer.domain.enums.MeetingType.SCHEDULED;
 
 @Service
 public class LiveClassServiceImpl implements LiveClassService {
 
     private static final LiveClassMapper MAPPER = Mappers.getMapper(LiveClassMapper.class);
 
-    LiveClassRepository repository;
+    private final LiveClassRepository repository;
 
-    TrainerRepository trainerRepository;
+    private final LiveClassStudentsRepository liveClassStudentsRepository;
 
-    FieldRepository fieldRepository;
+    private final TrainerRepository trainerRepository;
+
+    private final FieldRepository fieldRepository;
+
+    private final StudentRepository studentRepository;
+
+    private final ZoomApiService zoomApiService;
 
     public LiveClassServiceImpl(LiveClassRepository repository, TrainerRepository trainerRepository,
-            FieldRepository fieldRepository) {
+            FieldRepository fieldRepository, ZoomApiService zoomApiService, StudentRepository studentRepository,
+                                LiveClassStudentsRepository liveClassStudentsRepository) {
         this.repository = repository;
         this.trainerRepository = trainerRepository;
         this.fieldRepository = fieldRepository;
+        this.zoomApiService = zoomApiService;
+        this.studentRepository = studentRepository;
+        this.liveClassStudentsRepository = liveClassStudentsRepository;
     }
 
     @Override
     public void createLiveClass(LiveClassRequest request) {
-        Trainer trainer = trainerRepository.findById(request.getTrainer()).orElseThrow(() -> new DataNotFoundException(request.getTrainer()));
-        Field field = fieldRepository.findById(request.getField()).orElseThrow(() -> new DataNotFoundException(request.getField()));
+        var trainer = trainerRepository.findById(request.getTrainer()).orElseThrow(() -> new DataNotFoundException(request.getTrainer()));
+        var field = fieldRepository.findById(request.getField()).orElseThrow(() -> new DataNotFoundException(request.getField()));
 
-        LiveClass liveClass = new LiveClass();
+        var meetingRequest = new ZoomMeetingRequest.Builder()
+                .withName(request.getTitle())
+                .withDescription("Description")
+                .byHost(request.getTrainer())
+                .type(SCHEDULED)
+                .at(request.getStartTime())
+                .duration(request.getDuration())
+                .withDefaultSettings()
+                .build();
 
-        liveClass.setField(field);
-        liveClass.setTrainer(trainer);
-        liveClass.setStartTime(request.getStartTime());
-        liveClass.setEndTime(request.getEndTime());
-        liveClass.setTitle(request.getTitle());
-        liveClass.setType(request.getType());
+        //TODO criação apenas para o perfil de treinador, se ele não tiver um perfil pago, max de 40 min e 100 pessoas
+        var response = zoomApiService.createMeeting(meetingRequest);
+
+        var liveClass = MAPPER.createEntity(request, trainer, field, response);
 
         repository.save(liveClass);
     }
 
     @Override
     public LiveClassDto findLiveClass(Long id) {
-        LiveClass liveClass = repository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
-        return MAPPER.entityToDto(liveClass);
+        var liveClass = repository.findByIdWithDetails(id).orElseThrow(() -> new DataNotFoundException(id));
+        return MAPPER.detailedClassData(liveClass);
     }
 
     @Override
@@ -89,15 +104,18 @@ public class LiveClassServiceImpl implements LiveClassService {
 
     @Override
     public void updateLiveClass(LiveClassRequest request) {
-        LiveClass liveClass = repository.findById(request.getId()).orElseThrow(() -> new DataNotFoundException(request.getId()));
+        var liveClass = repository.findById(request.getId()).orElseThrow(() -> new DataNotFoundException(request.getId()));
         liveClass.setTitle(request.getTitle());
         repository.save(liveClass);
     }
 
     @Override
-    public void addStudentToLiveClass(Long id, Long studentId) {
-        // TODO Auto-generated method stub
-        
+    public void addStudentToLiveClass(AddStudentRequest request) {
+        var student = studentRepository.findById(request.getStudentId()).orElseThrow(() -> new DataNotFoundException(request.getStudentId()));
+        var liveClass = repository.findById(request.getLiveClassId()).orElseThrow(() -> new DataNotFoundException(request.getLiveClassId()));
+
+        var liveClassStudents = new LiveClassStudents(liveClass, student);
+        liveClassStudentsRepository.save(liveClassStudents);
     }
 
 }

@@ -12,6 +12,10 @@ databaseChangeLog:
   - include:
       file: db/migrations/20210512/RefactorLiveClass.xml
   - include:
+      file: db/migrations/20210529/CreateZoomToken.xml
+  - include:
       file: db/migrations/20210531/RenameTrainerFieldColumns.xml
+  - include:
+      file: db/migrations/20210606/UpdateLiveClass.xml
   - include:
       file: db/migrations/20210606/CreateTableAuthUser.xml

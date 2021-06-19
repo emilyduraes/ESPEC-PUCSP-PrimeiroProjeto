@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f4954785-3931-45f3-a968-76c72ff1ef41",
+		"_postman_id": "c1c7c6a6-0a7a-4eb0-8250-a80806989553",
 		"name": "VirtualTrainer",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -213,7 +213,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fullName\": \"Student Test\",\r\n    \"nickname\": \"Student\",\r\n    \"cpf\": 12345678900,\r\n    \"birthdate\": \"1995-06-03\",\r\n    \"email\": \"studentTest@virtualtrainer.com.br\",\r\n    \"cellphone\": 11999999999,\r\n    \"zoomAccount\": \"studentTest@virtualtrainer.com.br\"\r\n}",
+							"raw": "{\r\n    \"fullName\": \"Student Test\",\r\n    \"nickname\": \"Student\",\r\n    \"cpf\": 81104380080,\r\n    \"birthDate\": \"1995-06-03\",\r\n    \"email\": \"studentTest@virtualtrainer.com.br\",\r\n    \"cellphone\": 11999999999,\r\n    \"zoomAccount\": \"studentTest@virtualtrainer.com.br\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -326,6 +326,259 @@
 								"virtual-trainer",
 								"student",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aulas",
+			"item": [
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startTime\":\"2021-06-12 10:15:00\",\r\n    \"duration\":34,\r\n    \"trainer\":1,\r\n    \"field\":3,\r\n    \"title\": \"Super aula\",\r\n    \"description\" : \"Alguma descrição motivacional\",\r\n    \"type\" : \"tipo da aula\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/virtual-trainer/live-class",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"virtual-trainer",
+								"live-class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/virtual-trainer/live-class/id/:liveClassId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"virtual-trainer",
+								"live-class",
+								"id",
+								":liveClassId"
+							],
+							"variable": [
+								{
+									"key": "liveClassId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Aluno",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"liveClassId\": 2,\r\n    \"studentId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/virtual-trainer/live-class/addStudent",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"virtual-trainer",
+								"live-class",
+								"addStudent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Field/Category",
+			"item": [
+				{
+					"name": "Buscar categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/virtual-trainer/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"virtual-trainer",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar categoria por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/virtual-trainer/category/id/:categoryId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"virtual-trainer",
+								"category",
+								"id",
+								":categoryId"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar áreas por categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/virtual-trainer/category/id/:categoryId/fields",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"virtual-trainer",
+								"category",
+								"id",
+								":categoryId",
+								"fields"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Zoom",
+			"item": [
+				{
+					"name": "Criar aula - Zoom",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{zoomToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"topic\": \"Coisa\",\r\n  \"type\": \"1\",\r\n  \"agenda\": \"Apresentacao de venda\",  \r\n  \"settings\": {\r\n    \"host_video\": false,\r\n    \"participant_video\": false,\r\n    \"cn_meeting\": false,\r\n    \"in_meeting\": false,\r\n    \"join_before_host\": false,\r\n    \"mute_upon_entry\": false,\r\n    \"watermark\": false,\r\n    \"use_pmi\": false,\r\n    \"approval_type\": 1,\r\n    \"registration_type\": 1,\r\n    \"audio\": \"both\",\r\n    \"auto_recording\": \"none\",\r\n    \"enforce_login\": false,\r\n    \"registrants_email_notification\": false\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.zoom.us/v2/users/me/meetings",
+							"protocol": "https",
+							"host": [
+								"api",
+								"zoom",
+								"us"
+							],
+							"path": [
+								"v2",
+								"users",
+								"me",
+								"meetings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar aula - app",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"topic\": \"Aula pelo App\",  \r\n  \"agenda\": \"aULA DE SPIN\",  \r\n  \"type\": \"2\",\r\n  \"start_time\": \"2021-06-30T10:20:00Z\",\r\n  \"duration\": 30,\r\n  \"settings\": {\r\n    \"host_video\": false,\r\n    \"mute_upon_entry\": false,\r\n    \"approval_type\": 0,\r\n    \"registration_type\": 1,\r\n    \"auto_recording\": \"none\",\r\n    \"waiting_room\": true\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/virtual-trainer/zoom/api/meeting",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"virtual-trainer",
+								"zoom",
+								"api",
+								"meeting"
 							]
 						}
 					},

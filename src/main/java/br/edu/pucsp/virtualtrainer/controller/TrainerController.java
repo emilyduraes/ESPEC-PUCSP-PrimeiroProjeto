@@ -1,10 +1,10 @@
 package br.edu.pucsp.virtualtrainer.controller;
 
 import br.edu.pucsp.virtualtrainer.service.TrainerService;
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerFieldRequest;
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
-import br.edu.pucsp.virtualtrainer.transport.response.TrainerListResponse;
-import br.edu.pucsp.virtualtrainer.transport.response.TrainerResponse;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerFieldRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerRequest;
+import br.edu.pucsp.virtualtrainer.domain.response.TrainerListResponse;
+import br.edu.pucsp.virtualtrainer.domain.response.TrainerResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 import br.edu.pucsp.virtualtrainer.exception.CertificateNotPresentException;
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import br.edu.pucsp.virtualtrainer.mapper.TrainerMapper;
-import br.edu.pucsp.virtualtrainer.model.dto.TrainerDto;
-import br.edu.pucsp.virtualtrainer.model.entity.Field;
-import br.edu.pucsp.virtualtrainer.model.entity.Trainer;
-import br.edu.pucsp.virtualtrainer.model.entity.TrainerField;
+import br.edu.pucsp.virtualtrainer.domain.dto.TrainerDto;
+import br.edu.pucsp.virtualtrainer.domain.entity.Field;
+import br.edu.pucsp.virtualtrainer.domain.entity.Trainer;
+import br.edu.pucsp.virtualtrainer.domain.entity.TrainerField;
 import br.edu.pucsp.virtualtrainer.repository.FieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerFieldRepository;
 import br.edu.pucsp.virtualtrainer.repository.TrainerRepository;
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerFieldRequest;
-import br.edu.pucsp.virtualtrainer.transport.request.TrainerRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerFieldRequest;
+import br.edu.pucsp.virtualtrainer.domain.request.TrainerRequest;
 
 
 @Service
@@ -93,10 +93,10 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public void addFields(TrainerFieldRequest trainerFieldRequest){
-        Field field = fieldRepository.findById(trainerFieldRequest.getFieldId()).orElseThrow(() -> new DataNotFoundException(trainerFieldRequest.getFieldId()));
-        Trainer trainer = repository.findById(trainerFieldRequest.getTrainerId()).orElseThrow(() -> new DataNotFoundException(trainerFieldRequest.getTrainerId()));
+        var field = fieldRepository.findById(trainerFieldRequest.getFieldId()).orElseThrow(() -> new DataNotFoundException(trainerFieldRequest.getFieldId()));
+        var trainer = repository.findById(trainerFieldRequest.getTrainerId()).orElseThrow(() -> new DataNotFoundException(trainerFieldRequest.getTrainerId()));
 
-        TrainerField trainerField = new TrainerField(trainer, field);
+        var trainerField = new TrainerField(trainer, field);
         if (field.isCertified()){
             if(trainerFieldRequest.getCertificate() != null){
                 trainerField.setCertificate(trainerFieldRequest.getCertificate());
