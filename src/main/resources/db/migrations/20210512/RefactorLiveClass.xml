@@ -1,55 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet author="Emily Duraes" id="20210512-1">
-        <renameTable   
-            newTableName="live_class"  
-            oldTableName="live_session"  
-            schemaName="virtual_trainer"/>  
+        <renameTable newTableName="live_class"
+                     oldTableName="live_session" schemaName="virtual_trainer" />
     </changeSet>
     <changeSet author="Emily Duraes" id="20210512-2">
-	    <addColumn schemaName= "virtual_trainer" tableName="live_class">
-		    <column afterColumn="id"
-                name="start_time" 
-			    type="SmallDateTime" >
-			    <constraints nullable="false"/>
-            </column>  
-		    <column afterColumn="start_time" 
-			    name="end_time"  
-			    type="SmallDateTime" >  
-			    <constraints nullable="false"/>
-            </column>   
-            <column afterColumn="title" 
-			    name="type"  
-			    type="varchar(255)" >  
-			    <constraints nullable="false"/>
-            </column>   
-	    </addColumn> 
+        <addColumn schemaName="virtual_trainer"
+                   tableName="live_class">
+            <column afterColumn="id" name="start_time"
+                    type="SmallDateTime">
+                <constraints nullable="false" />
+            </column>
+            <column afterColumn="start_time" name="end_time"
+                    type="SmallDateTime">
+                <constraints nullable="false" />
+            </column>
+            <column afterColumn="title" name="type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
     </changeSet>
     <changeSet author="Emily Duraes" id="20210512-3">
-            <dropColumn   
-                schemaName="virtual_trainer"  
-                tableName="live_class">  
-            <column  name="date"/>  
-            <column  name="length"/>  
-        </dropColumn> 
+        <dropColumn schemaName="virtual_trainer"
+                    tableName="live_class">
+            <column name="date" />
+            <column name="length" />
+        </dropColumn>
     </changeSet>
     <changeSet author="Emily Duraes" id="20210512-4">
         <dropTable cascadeConstraints="true"
-            schemaName="virtual_trainer"
-            tableName="session"/>
+                   schemaName="virtual_trainer" tableName="session" />
     </changeSet>
     <changeSet author="Emily Duraes" id="20210512-5">
-        <renameTable   
-            newTableName="live_class_enrolled_students"  
-            oldTableName="live_sessions_enrolled_students"  
-            schemaName="virtual_trainer"/>  
+        <renameTable newTableName="live_class_enrolled_students"
+                     oldTableName="live_sessions_enrolled_students"
+                     schemaName="virtual_trainer" />
+    </changeSet>
+    <changeSet author="Bruno Gil" id="20210512-5-1">
+        <dropForeignKeyConstraint
+                baseTableName="live_class_enrolled_students" constraintName="FK_LIVE_SESSION_ID" />
     </changeSet>
     <changeSet author="Emily Duraes" id="20210512-6">
-        <renameColumn  
-            columnDataType="BIGINT" 
-            newColumnName="live_class_id" 
-            oldColumnName="live_session_id" 
-            schemaName="virtual_trainer" 
-            tableName="live_class_enrolled_students"/>
+        <renameColumn columnDataType="BIGINT"
+                      newColumnName="live_class_id" oldColumnName="live_session_id"
+                      schemaName="virtual_trainer" tableName="live_class_enrolled_students" />
+    </changeSet>
+    <changeSet author="Bruno Gil" id="20210512-7">
+        <addForeignKeyConstraint baseColumnNames="live_class_id" baseTableName="live_class_enrolled_students"
+                                 constraintName="FK_LIVE_SESSION_ID" deferrable="false" initiallyDeferred="false"
+                                 referencedColumnNames="id" referencedTableName="live_class"/>
     </changeSet>
 </databaseChangeLog>

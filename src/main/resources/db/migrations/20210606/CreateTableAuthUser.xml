@@ -3,7 +3,7 @@
                    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet author="Bruno Gil" id="20210606-1">
+    <changeSet author="Bruno Gil" id="20210606-3">
         <createTable tableName="auth_user">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="AuthUserPK"/>
@@ -23,17 +23,17 @@
         </createTable>
         <insert schemaName="virtual_trainer"
                 tableName="auth_user">
-            <column name="name" value="Administrador Fitness"/>
-            <column name="username" value="fitnessadm"/>
+            <column name="name" value="Trainer User"/>
+            <column name="username" value="trainerfitness"/>
             <column name="password" value="{bcrypt}$2a$10$DNT.bKamYLcXyayOfddsAO2MWn8CM2bEKhJLGzQcvJCdu02yRGnHe"/>
-            <column name="authorities" value="ROLE_ADMIN,ROLE_USER"/>
+            <column name="authorities" value="ROLE_TRAINER"/>
         </insert>
         <insert schemaName="virtual_trainer"
                 tableName="auth_user">
-            <column name="name" value="User Fitness"/>
-            <column name="username" value="fitnessuser"/>
+            <column name="name" value="Student User"/>
+            <column name="username" value="studentfitness"/>
             <column name="password" value="{bcrypt}$2a$10$Qj8FCMZRTtXue09x5fQlbuZ.fRkMYX98KTEOYR7JQcINxDvkmrSEi"/>
-            <column name="authorities" value="ROLE_USER"/>
+            <column name="authorities" value="ROLE_STUDENT"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

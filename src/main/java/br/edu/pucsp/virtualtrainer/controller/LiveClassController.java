@@ -37,7 +37,7 @@ public class LiveClassController {
 
     @ApiOperation(value = "Insert a Live Class into the database")
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('TRAINER')")
     @ResponseStatus(HttpStatus.CREATED)
     public void createLiveClass(@RequestBody @Valid LiveClassRequest request) {
         liveClassService.createLiveClass(request);
@@ -63,20 +63,21 @@ public class LiveClassController {
 
     @ApiOperation(value = "Updates a live class title in the database")
     @PatchMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('TRAINER')")
     public void updateLiveClass(@RequestBody @Valid LiveClassRequest request) {
         liveClassService.updateLiveClass(request);
     }
 
     @ApiOperation(value = "Delete a live class from the database")
     @DeleteMapping(path = "/{liveClassId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('TRAINER')")
     public void deleteLiveClass(@PathVariable Long liveClassId) {
         liveClassService.deleteLiveClass(liveClassId);
     }
 
     @ApiOperation(value = "Add a student to an existing class")
     @PostMapping(path = "/addStudent")
+    @PreAuthorize("hasRole('TRAINER')")
     public void addStudent(@RequestBody AddStudentRequest request){
         liveClassService.addStudentToLiveClass(request);
     }

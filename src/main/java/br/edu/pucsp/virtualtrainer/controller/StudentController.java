@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiOperation;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping("/student")
+@PreAuthorize("hasRole('STUDENT')")
 public class StudentController {
 
     private final StudentService studentService;
@@ -36,7 +37,6 @@ public class StudentController {
 
     @ApiOperation(value = "Insert a Student into the database")
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public void createStudent(@RequestBody @Valid StudentRequest request) {
         studentService.createStudent(request);
@@ -56,14 +56,12 @@ public class StudentController {
 
     @ApiOperation(value = "Update a Student in the database")
     @PutMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public void updateStudent(@RequestBody @Valid StudentRequest request) {
         studentService.updateStudent(request);
     }
 
     @ApiOperation(value = "Delete (deactivate) a Student from the database")
     @DeleteMapping(path = "/{studentId}")
-    @PreAuthorize("hasRole('ADMIN')")
     public void deleteStudent(@PathVariable Long studentId) {
         studentService.deleteStudent(studentId);
     }

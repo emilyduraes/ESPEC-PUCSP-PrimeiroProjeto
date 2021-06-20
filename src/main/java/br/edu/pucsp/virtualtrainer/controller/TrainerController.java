@@ -17,6 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @CrossOrigin(origins = "http://35.184.242.241:4200")
 @RestController()
 @RequestMapping("/trainer")
+@PreAuthorize("hasRole('TRAINER')")
 public class TrainerController {
 
     private final TrainerService trainerService;
@@ -27,7 +28,6 @@ public class TrainerController {
 
     @ApiOperation(value = "Insert a trainer into the database")
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public void createTrainer(
             @RequestBody @Valid TrainerRequest request){
@@ -56,7 +56,6 @@ public class TrainerController {
 
     @ApiOperation(value = "Update a trainer's info")
     @PutMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public void updateTrainer(
             @RequestBody @Valid TrainerRequest request){
         trainerService.updateTrainer(request);
@@ -64,7 +63,6 @@ public class TrainerController {
 
     @ApiOperation(value = "Delete a trainer")
     @DeleteMapping(path = "/{trainerId}")
-    @PreAuthorize("hasRole('ADMIN')")
     public void deleteTrainer(
             @PathVariable Long trainerId){
         trainerService.deleteTrainer(trainerId);

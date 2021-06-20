@@ -1,4 +1,4 @@
-package br.edu.pucsp.virtualtrainer.model.entity;
+package br.edu.pucsp.virtualtrainer.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -72,4 +72,5 @@ public class AuthUser implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
