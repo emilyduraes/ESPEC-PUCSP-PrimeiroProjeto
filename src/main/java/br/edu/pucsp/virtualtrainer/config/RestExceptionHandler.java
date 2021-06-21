@@ -1,5 +1,6 @@
 package br.edu.pucsp.virtualtrainer.config;
 
+import br.edu.pucsp.virtualtrainer.domain.response.MsgLoginResponse;
 import br.edu.pucsp.virtualtrainer.exception.CertificateNotPresentException;
 import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 import org.hibernate.exception.ConstraintViolationException;
@@ -12,11 +13,13 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -81,6 +84,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             message = ((ConstraintViolationException) e.getCause()).getConstraintName();
         }
         return formatResponse(String.join(":", cause, message), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseBody
+    public ResponseEntity<Object> handleBadCredentials(BadCredentialsException e, HttpServletRequest req){
+        logException(e, req);
+        return formatResponse(MsgLoginResponse.NO_USER_WITH_USERNAME.toString(), HttpStatus.BAD_REQUEST);
     }
 
     @Override

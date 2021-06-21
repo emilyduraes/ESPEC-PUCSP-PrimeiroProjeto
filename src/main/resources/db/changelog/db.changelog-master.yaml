@@ -17,3 +17,5 @@ databaseChangeLog:
       file: db/migrations/20210531/RenameTrainerFieldColumns.xml
   - include:
       file: db/migrations/20210606/UpdateLiveClass.xml
+  - include:
+      file: db/migrations/20210620/CreateTableAuthUser.xml

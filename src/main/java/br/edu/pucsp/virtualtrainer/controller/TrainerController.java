@@ -7,15 +7,17 @@ import br.edu.pucsp.virtualtrainer.domain.response.TrainerListResponse;
 import br.edu.pucsp.virtualtrainer.domain.response.TrainerResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://35.184.242.241:4200")
 @RestController()
 @RequestMapping("/trainer")
+@PreAuthorize("hasRole('TRAINER')")
 public class TrainerController {
 
     private final TrainerService trainerService;

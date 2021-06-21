@@ -39,7 +39,7 @@ public class Trainer {
     @Column(nullable = false)
     private boolean active;
 
-    @OneToMany(mappedBy = "trainerId")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "trainerId")
     private Set<TrainerField> fields;
 
     public Trainer() {

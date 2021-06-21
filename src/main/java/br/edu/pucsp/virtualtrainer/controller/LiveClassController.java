@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import br.edu.pucsp.virtualtrainer.domain.request.AddStudentRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class LiveClassController {
 
     @ApiOperation(value = "Insert a Live Class into the database")
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('TRAINER')")
     @ResponseStatus(HttpStatus.CREATED)
     public void createLiveClass(@RequestBody @Valid LiveClassRequest request) {
         liveClassService.createLiveClass(request);
@@ -61,18 +63,21 @@ public class LiveClassController {
 
     @ApiOperation(value = "Updates a live class title in the database")
     @PatchMapping
+    @PreAuthorize("hasRole('TRAINER')")
     public void updateLiveClass(@RequestBody @Valid LiveClassRequest request) {
         liveClassService.updateLiveClass(request);
     }
 
     @ApiOperation(value = "Delete a live class from the database")
     @DeleteMapping(path = "/{liveClassId}")
+    @PreAuthorize("hasRole('TRAINER')")
     public void deleteLiveClass(@PathVariable Long liveClassId) {
         liveClassService.deleteLiveClass(liveClassId);
     }
 
     @ApiOperation(value = "Add a student to an existing class")
     @PostMapping(path = "/addStudent")
+    @PreAuthorize("hasRole('TRAINER')")
     public void addStudent(@RequestBody AddStudentRequest request){
         liveClassService.addStudentToLiveClass(request);
     }
