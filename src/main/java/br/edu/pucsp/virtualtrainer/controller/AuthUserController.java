@@ -43,12 +43,4 @@ public class AuthUserController {
         LoginResponse response = authUserService.logout();
         return response;
     }
-
-/*    @GetMapping(path = "/user")
-    public Principal user(HttpServletRequest request) {
-        String authToken = request.getHeader("Authorization")
-                .substring("Basic".length()).trim();
-        return () -> new String(Base64.getDecoder()
-                .decode(authToken)).split(":")[0];
-    }*/
 }
