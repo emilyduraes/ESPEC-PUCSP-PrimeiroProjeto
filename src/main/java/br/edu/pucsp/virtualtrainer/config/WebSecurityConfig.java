@@ -15,13 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final Logger log = LoggerFactory.getLogger(RestExceptionHandler.class);
 
     private final AuthUserDetailsService authUserDetailsService;
 
-    public SecurityConfig(AuthUserDetailsService authUserDetailsService) {
+    public WebSecurityConfig(AuthUserDetailsService authUserDetailsService) {
         this.authUserDetailsService = authUserDetailsService;
     }
 
