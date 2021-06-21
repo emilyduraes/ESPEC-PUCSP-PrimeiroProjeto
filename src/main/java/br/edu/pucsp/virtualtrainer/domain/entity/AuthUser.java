@@ -8,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Arrays;
 import java.util.Collection;
@@ -27,14 +24,18 @@ public class AuthUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "The name user cannot be empty")
-    private String name;
     @NotEmpty
     private String username;
     @NotEmpty
     private String password;
     @NotEmpty
     private String authorities;
+    @OneToOne
+    @JoinColumn(name = "trainer", referencedColumnName = "id")
+    private Trainer trainer;
+    @OneToOne
+    @JoinColumn(name = "student", referencedColumnName = "id")
+    private Student student;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -73,4 +74,19 @@ public class AuthUser implements UserDetails {
         return true;
     }
 
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

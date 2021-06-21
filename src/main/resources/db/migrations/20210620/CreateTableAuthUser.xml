@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="Bruno Gil" id="20210620-1">
+        <createTable tableName="auth_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="AuthUserPK"/>
+            </column>
+            <column name="username" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="CHAR(90)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authorities" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="student" type="BIGINT"/>
+            <column name="trainer" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Bruno Gil" id="20210620-2">
+        <addForeignKeyConstraint baseColumnNames="trainer" baseTableName="auth_user" constraintName="FK_AUTH_TRAINER" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="trainer"/>
+    </changeSet>
+    <changeSet author="Bruno Gil" id="20210620-3">
+        <addForeignKeyConstraint baseColumnNames="student" baseTableName="auth_user" constraintName="FK_AUTH_STUDENT" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="student"/>
+    </changeSet>
+    <changeSet author="Bruno Gil" id="20210620-4">
+        <insert schemaName="virtual_trainer"
+                tableName="student">
+            <column name="id" valueNumeric="9999"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="birth_date" valueDate="1990-09-01"/>
+            <column name="cellphone" valueNumeric="11941421222"/>
+            <column name="cpf" valueNumeric="82368723439"/>
+            <column name="email" value="student_fitness@puc.com.br"/>
+            <column name="nickname" value="studentfitness"/>
+            <column name="full_name" value="Student User"/>
+            <column name="zoom_account" value="student_fitness@puc.com.br"/>
+        </insert>
+        <insert schemaName="virtual_trainer"
+                tableName="trainer">
+            <column name="id" valueNumeric="9999"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="birthdate" valueDate="1990-09-21"/>
+            <column name="cellphone" valueNumeric="11941421248"/>
+            <column name="cnpj" valueNumeric="30775414000153"/>
+            <column name="cpf" valueNumeric="46493811260"/>
+            <column name="email" value="trainer_fitness@puc.com.br"/>
+            <column name="nickname" value="trainerfitness"/>
+            <column name="full_name" value="Trainer User"/>
+            <column name="zoom_account" value="trainer_fitness@puc.com.br"/>
+        </insert>
+        <insert schemaName="virtual_trainer"
+                tableName="auth_user">
+            <column name="username" value="trainer_fitness@puc.com.br"/>
+            <column name="password" value="{bcrypt}$2a$10$DNT.bKamYLcXyayOfddsAO2MWn8CM2bEKhJLGzQcvJCdu02yRGnHe"/>
+            <column name="authorities" value="ROLE_TRAINER"/>
+            <column name="trainer" valueNumeric="9999"/>
+        </insert>
+        <insert schemaName="virtual_trainer"
+                tableName="auth_user">
+            <column name="username" value="student_fitness@puc.com.br"/>
+            <column name="password" value="{bcrypt}$2a$10$Qj8FCMZRTtXue09x5fQlbuZ.fRkMYX98KTEOYR7JQcINxDvkmrSEi"/>
+            <column name="authorities" value="ROLE_STUDENT"/>
+            <column name="student" valueNumeric="9999"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

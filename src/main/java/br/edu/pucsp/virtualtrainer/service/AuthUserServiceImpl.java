@@ -1,32 +1,30 @@
 package br.edu.pucsp.virtualtrainer.service;
 
-import br.edu.pucsp.virtualtrainer.config.SecurityConfig;
 import br.edu.pucsp.virtualtrainer.domain.entity.AuthUser;
 import br.edu.pucsp.virtualtrainer.domain.request.LoginRequest;
+import br.edu.pucsp.virtualtrainer.domain.response.AuthUserResponse;
 import br.edu.pucsp.virtualtrainer.domain.response.LoginResponse;
 import br.edu.pucsp.virtualtrainer.domain.response.MsgLoginResponse;
 import br.edu.pucsp.virtualtrainer.repository.AuthUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Base64Utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Base64;
 
 @Service
 public class AuthUserServiceImpl implements AuthUserService{
@@ -50,28 +48,29 @@ public class AuthUserServiceImpl implements AuthUserService{
 
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
-        log.info("loginRequest.getPassword(): "+loginRequest.getPassword());
-        log.info("loginRequest.getUsername(): "+loginRequest.getUsername());
         UsernamePasswordAuthenticationToken authenticationTokenRequest = new
                 UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
                 loginRequest.getPassword());
         try {
             Authentication authentication = this.authenticationManager.authenticate(authenticationTokenRequest);
-            log.info("authentication: "+authentication);
-            log.info("authentication STRING: "+authentication.toString());
             SecurityContext securityContext = SecurityContextHolder.getContext();
-            log.info("securityContext: "+securityContext);
-            log.info("securityContext STRING: "+securityContext.toString());
             securityContext.setAuthentication(authentication);
-            log.info("securityContext.setAuth: "+securityContext);
-            log.info("securityContext.setAuth STRING: "+securityContext.toString());
+//            HttpSession session = httpServletRequest.getSession(true);
+//            session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, securityContext);
 
-            HttpSession session = httpServletRequest.getSession(true);
-            session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, securityContext);
             AuthUser authUser = (AuthUser) authentication.getPrincipal();
-            log.info("Logged in user: " + authUser.toString());
-            return new LoginResponse(HttpStatus.OK, MsgLoginResponse.OK, authUser);
+            AuthUserResponse authUserResponse = new AuthUserResponse();
+            authUserResponse.setAuthorities(authUser.getAuthorities());
+            authUserResponse.setStudent(authUser.getStudent());
+            authUserResponse.setTrainer(authUser.getTrainer());
+            authUserResponse.setBasicAuthorization("Authorization: Basic " +
+                    Base64Utils.encodeToString(
+                            String.format("%s:%s", loginRequest.getUsername(),loginRequest.getPassword())
+                                    .getBytes()));
 
+            log.info("Logged in user: " + authUser.toString());
+            log.info("AuthUserResponse: "+authUserResponse);
+            return new LoginResponse(HttpStatus.OK, MsgLoginResponse.OK, authUserResponse);
         } catch (BadCredentialsException ex) {
             return new LoginResponse(HttpStatus.BAD_REQUEST, MsgLoginResponse.NO_USER_WITH_USERNAME);
         }

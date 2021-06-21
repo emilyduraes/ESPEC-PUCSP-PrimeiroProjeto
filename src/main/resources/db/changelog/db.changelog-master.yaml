@@ -18,4 +18,4 @@ databaseChangeLog:
   - include:
       file: db/migrations/20210606/UpdateLiveClass.xml
   - include:
-      file: db/migrations/20210606/CreateTableAuthUser.xml
+      file: db/migrations/20210620/CreateTableAuthUser.xml
