@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin(origins = "http://35.184.242.241:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController()
 @RequestMapping("/trainer")
 @PreAuthorize("hasRole('TRAINER')")

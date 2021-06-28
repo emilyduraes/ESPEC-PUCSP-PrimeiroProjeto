@@ -1,28 +1,27 @@
 package br.edu.pucsp.virtualtrainer.domain.request;
 
+import javax.validation.constraints.NotEmpty;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 @ApiModel(value = "LoginRequest", description = "Username and Password")
 public class LoginRequest {
 
-    @ApiModelProperty(name = "username")
+    @ApiModelProperty(name = "email")
     @NotEmpty(message = "The username cannot be null or empty")
-    private String username;
+    private String email;
 
     @ApiModelProperty(name = "password")
     @NotEmpty(message = "The password cannot be null or empty")
     private String password;
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
