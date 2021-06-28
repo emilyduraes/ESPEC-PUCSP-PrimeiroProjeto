@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jackson.JsonObjectSerializer;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,6 +25,7 @@ import br.edu.pucsp.virtualtrainer.domain.response.AuthUserResponse;
 import br.edu.pucsp.virtualtrainer.domain.response.LoginResponse;
 import br.edu.pucsp.virtualtrainer.domain.response.MsgLoginResponse;
 import br.edu.pucsp.virtualtrainer.repository.AuthUserRepository;
+import springfox.documentation.spring.web.json.Json;
 
 @Service
 public class AuthUserServiceImpl implements AuthUserService{
@@ -57,10 +59,18 @@ public class AuthUserServiceImpl implements AuthUserService{
             authUserResponse.setAuthorities(authUser.getAuthorities());
             authUserResponse.setStudent(authUser.getStudent());
             authUserResponse.setTrainer(authUser.getTrainer());
-            authUserResponse.setBasicAuthorization("Basic " +
-                    Base64Utils.encodeToString(
-                            String.format("%s:%s", loginRequest.getEmail(),loginRequest.getPassword())
-                                    .getBytes()));
+
+            if (authUser.getAuthorities().toString().contains("ROLE_TRAINER")){
+                authUserResponse.setBasicAuthorization("Basic " +
+                Base64Utils.encodeToString(
+                        String.format("%s:%s", authUserResponse.getTrainer(), authUserResponse.getAuthorities().toArray()[0])
+                                .getBytes()));
+            } else if (authUser.getAuthorities().toString().contains("ROLE_STUDENT")){
+                authUserResponse.setBasicAuthorization("Basic " +
+                Base64Utils.encodeToString(
+                        String.format("%s:%s", authUserResponse.getStudent(), authUserResponse.getAuthorities().toArray()[0])
+                                .getBytes()));
+            }
 
             log.info("Logged in user: " + authUser.toString());
             log.info("AuthUserResponse: "+authUserResponse);
