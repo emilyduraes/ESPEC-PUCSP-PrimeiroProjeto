@@ -1,8 +1,15 @@
 package br.edu.pucsp.virtualtrainer.config;
 
-import br.edu.pucsp.virtualtrainer.domain.response.MsgLoginResponse;
-import br.edu.pucsp.virtualtrainer.exception.CertificateNotPresentException;
-import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
+import static java.util.Objects.nonNull;
+
+import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,22 +23,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.InvocationTargetException;
-import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import static java.util.Objects.nonNull;
+import br.edu.pucsp.virtualtrainer.domain.response.MsgLoginResponse;
+import br.edu.pucsp.virtualtrainer.exception.CertificateNotPresentException;
+import br.edu.pucsp.virtualtrainer.exception.DataNotFoundException;
 
 //@ControllerAdvice
 @Order

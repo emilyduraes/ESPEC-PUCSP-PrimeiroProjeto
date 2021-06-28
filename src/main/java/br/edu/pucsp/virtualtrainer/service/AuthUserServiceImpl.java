@@ -1,11 +1,9 @@
 package br.edu.pucsp.virtualtrainer.service;
 
-import br.edu.pucsp.virtualtrainer.domain.entity.AuthUser;
-import br.edu.pucsp.virtualtrainer.domain.request.LoginRequest;
-import br.edu.pucsp.virtualtrainer.domain.response.AuthUserResponse;
-import br.edu.pucsp.virtualtrainer.domain.response.LoginResponse;
-import br.edu.pucsp.virtualtrainer.domain.response.MsgLoginResponse;
-import br.edu.pucsp.virtualtrainer.repository.AuthUserRepository;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +15,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.Base64;
+import br.edu.pucsp.virtualtrainer.domain.entity.AuthUser;
+import br.edu.pucsp.virtualtrainer.domain.request.LoginRequest;
+import br.edu.pucsp.virtualtrainer.domain.response.AuthUserResponse;
+import br.edu.pucsp.virtualtrainer.domain.response.LoginResponse;
+import br.edu.pucsp.virtualtrainer.domain.response.MsgLoginResponse;
+import br.edu.pucsp.virtualtrainer.repository.AuthUserRepository;
 
 @Service
 public class AuthUserServiceImpl implements AuthUserService{
@@ -43,29 +42,24 @@ public class AuthUserServiceImpl implements AuthUserService{
     @Autowired
     AuthenticationManager authenticationManager;
 
-    @Autowired
-    private AuthUserDetailsService authUserDetailsService;
-
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken authenticationTokenRequest = new
-                UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
                 loginRequest.getPassword());
         try {
             Authentication authentication = this.authenticationManager.authenticate(authenticationTokenRequest);
             SecurityContext securityContext = SecurityContextHolder.getContext();
             securityContext.setAuthentication(authentication);
-//            HttpSession session = httpServletRequest.getSession(true);
-//            session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, securityContext);
-
+            
             AuthUser authUser = (AuthUser) authentication.getPrincipal();
             AuthUserResponse authUserResponse = new AuthUserResponse();
             authUserResponse.setAuthorities(authUser.getAuthorities());
             authUserResponse.setStudent(authUser.getStudent());
             authUserResponse.setTrainer(authUser.getTrainer());
-            authUserResponse.setBasicAuthorization("Authorization: Basic " +
+            authUserResponse.setBasicAuthorization("Basic " +
                     Base64Utils.encodeToString(
-                            String.format("%s:%s", loginRequest.getUsername(),loginRequest.getPassword())
+                            String.format("%s:%s", loginRequest.getEmail(),loginRequest.getPassword())
                                     .getBytes()));
 
             log.info("Logged in user: " + authUser.toString());
