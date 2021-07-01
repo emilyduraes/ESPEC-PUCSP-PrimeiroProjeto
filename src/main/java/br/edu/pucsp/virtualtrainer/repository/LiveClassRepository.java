@@ -16,4 +16,7 @@ public interface LiveClassRepository extends JpaRepository<LiveClass, Long> {
 
     @Query("SELECT l FROM LiveClass l LEFT JOIN FETCH l.students WHERE l.id = :liveClassId ")
     Optional<LiveClass> findByIdWithDetails(Long liveClassId);
+
+    @Query("SELECT l FROM LiveClass l LEFT JOIN FETCH l.students ")
+    List<LiveClass> findAllWithDetails();
 }
