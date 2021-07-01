@@ -5,11 +5,11 @@ import javax.validation.constraints.NotEmpty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "LoginRequest", description = "Username and Password")
+@ApiModel(value = "LoginRequest", description = "E-mail and Password")
 public class LoginRequest {
 
     @ApiModelProperty(name = "email")
-    @NotEmpty(message = "The username cannot be null or empty")
+    @NotEmpty(message = "The e-mail cannot be null or empty")
     private String email;
 
     @ApiModelProperty(name = "password")
