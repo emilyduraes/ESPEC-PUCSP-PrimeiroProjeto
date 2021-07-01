@@ -61,7 +61,7 @@ public class AuthUserServiceImpl implements AuthUserService{
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken authenticationTokenRequest = new
-                UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+                UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
                 loginRequest.getPassword());
         try {
             Authentication authentication = this.authenticationManager.authenticate(authenticationTokenRequest);
@@ -75,7 +75,7 @@ public class AuthUserServiceImpl implements AuthUserService{
             authUserResponse.setTrainer(authUser.getTrainer());
             authUserResponse.setBasicAuthorization("Basic " +
                     Base64Utils.encodeToString(
-                            String.format("%s:%s", loginRequest.getUsername(), loginRequest.getPassword())
+                            String.format("%s:%s", loginRequest.getEmail(), loginRequest.getPassword())
                                     .getBytes()));
 
             log.info("Logged in user: " + authUser.toString());
