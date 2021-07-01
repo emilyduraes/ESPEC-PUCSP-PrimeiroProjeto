@@ -86,7 +86,7 @@ public class LiveClassServiceImpl implements LiveClassService {
 
     @Override
     public List<LiveClassDto> findAllFutureLiveClasses(){
-        return repository.findAll()
+        return repository.findAllWithDetails()
                 .stream()
                 .filter(dates -> dates.getStartTime().isAfter(LocalDateTime.now()))
                 .map(MAPPER::entityToDto)
