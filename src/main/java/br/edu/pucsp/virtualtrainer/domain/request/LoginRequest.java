@@ -8,20 +8,20 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "LoginRequest", description = "Username and Password")
 public class LoginRequest {
 
-    @ApiModelProperty(name = "email")
+    @ApiModelProperty(name = "username")
     @NotEmpty(message = "The username cannot be null or empty")
-    private String email;
+    private String username;
 
     @ApiModelProperty(name = "password")
     @NotEmpty(message = "The password cannot be null or empty")
     private String password;
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
