@@ -13,12 +13,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Mapper(uses = TrainerMapper.class)
+@Mapper(uses = {TrainerMapper.class, StudentMapper.class})
 public abstract class LiveClassMapper {
 
     @Mapping(target = "students", source = "liveClass.students", qualifiedByName = "listConverter")
     public abstract LiveClassDto detailedClassData(LiveClass liveClass);
 
+    @Mapping(target = "students", source = "liveClass.students", qualifiedByName = "listConverter")
     public abstract LiveClassDto entityToDto(LiveClass liveClass);
 
     @Mapping(target = "id", ignore = true)
