@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: 'virtual-trainer'
-          image: 'gcr.io/clear-safeguard-315223/virtual-trainer/master:latest'
+          image: 'gcr.io/clear-safeguard-315223/virtual-trainer/authentication:latest'
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

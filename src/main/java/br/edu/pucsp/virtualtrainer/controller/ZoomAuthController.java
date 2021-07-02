@@ -4,7 +4,7 @@ import br.edu.pucsp.virtualtrainer.service.ZoomAuthService;
 import br.edu.pucsp.virtualtrainer.domain.response.api.ZoomTokenResponse;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://34.68.231.180")
 @RestController()
 @RequestMapping("/zoom/auth")
 public class ZoomAuthController {

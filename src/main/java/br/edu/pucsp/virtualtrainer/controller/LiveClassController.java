@@ -24,7 +24,7 @@ import br.edu.pucsp.virtualtrainer.domain.response.LiveClassListResponse;
 import br.edu.pucsp.virtualtrainer.domain.response.LiveClassResponse;
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://34.68.231.180")
 @RestController
 @RequestMapping("/live-class")
 public class LiveClassController {
