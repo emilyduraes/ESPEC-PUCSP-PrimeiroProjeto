@@ -19,3 +19,5 @@ databaseChangeLog:
       file: db/migrations/20210606/UpdateLiveClass.xml
   - include:
       file: db/migrations/20210620/CreateTableAuthUser.xml
+  - include:
+      file: db/migrations/20210630/AlterTableAuthUser.xml
