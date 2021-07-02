@@ -77,7 +77,7 @@ public class LiveClassController {
 
     @ApiOperation(value = "Add a student to an existing class")
     @PostMapping(path = "/addStudent")
-    @PreAuthorize("hasRole('TRAINER')")
+    @PreAuthorize("hasRole('STUDENT')")
     public void addStudent(@RequestBody AddStudentRequest request){
         liveClassService.addStudentToLiveClass(request);
     }
