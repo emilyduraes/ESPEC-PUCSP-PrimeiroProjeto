@@ -22,7 +22,6 @@ sonarcloud-check:
   script:
     - mvn verify sonar:sonar
   only:
-    - authentication
     - master
 
 package:
@@ -49,7 +48,6 @@ build:
     - echo $GOOGLE_APPLICATION_CREDENTIALS_BASE64 | base64 -d > $GOOGLE_APPLICATION_CREDENTIALS 
     - /kaniko/executor --context=$CI_PROJECT_DIR --dockerfile=Dockerfile --destination=$DOCKER_IMAGE_TAG:latest --cache=true
   only:
-    - authentication
     - master
 
 production:
@@ -65,6 +63,5 @@ production:
     - kubectl apply -f gke/deployment.yaml
     - kubectl rollout restart deployment.apps/virtual-trainer
   only:
-    - authentication
     - master
   when: manual
