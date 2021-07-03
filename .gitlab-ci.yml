@@ -22,7 +22,6 @@ sonarcloud-check:
   script:
     - mvn verify sonar:sonar
   only:
-    - sonarcloud
     - master
 
 package:

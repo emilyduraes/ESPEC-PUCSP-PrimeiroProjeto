@@ -23,7 +23,7 @@ import br.edu.pucsp.virtualtrainer.domain.response.StudentListResponse;
 import br.edu.pucsp.virtualtrainer.domain.response.StudentResponse;
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://34.68.231.180")
 @RestController()
 @RequestMapping("/student")
 @PreAuthorize("hasRole('STUDENT')")

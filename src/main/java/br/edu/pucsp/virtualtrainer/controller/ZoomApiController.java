@@ -5,7 +5,7 @@ import br.edu.pucsp.virtualtrainer.service.ZoomApiService;
 import br.edu.pucsp.virtualtrainer.domain.request.api.ZoomMeetingRequest;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://34.68.231.180")
 @RestController()
 @RequestMapping("/zoom/api")
 public class ZoomApiController {

@@ -17,7 +17,7 @@ import br.edu.pucsp.virtualtrainer.domain.response.LoginResponse;
 import br.edu.pucsp.virtualtrainer.service.AuthUserService;
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://34.68.231.180")
 @RestController()
 @RequestMapping("/auth")
 public class AuthUserController {
